@@ -1,0 +1,8 @@
+# Project Outline
+
+- Establish JSON data model for playing field and pieces.
+- Create JavaScript functions to handle gameplay.
+- Work from a sample app/tutorial to create a Firebase data app
+- Add views
+- Integrate Firebase's user Authentication features
+- Integrate Firebase's messaging module
