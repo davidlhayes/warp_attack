@@ -38,6 +38,8 @@ board =
   ]
 ]
 movepiece = function(start_row,start_col,finish_row,finish_col) {
+  // find piece in database
+  // write new values to arena in database and possibly tray
     console.log(board[finish_row-1][finish_col-1]);
     if (board[finish_row-1][finish_col-1]===null) {
         board[finish_row-1][finish_col-1] = board[start_row-1][start_col-1];
