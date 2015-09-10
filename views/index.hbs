@@ -3,9 +3,27 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <h1>Warp Attack</h1>
+        <h1>{{title}}</h1>
     </div>
 </div>
+<div ng-controller="waCtrl">
+  <article ng-repeat="message in messages">
+    UserName: <h3> {{message.user}} </h3>
+    Date: <p> {{ message.date }} </p>
+    Message: <h3> {{ message.text }} </h3>
+    <img ng-src=" {{ message.image }} "><br>
+    Likes: <h5> {{message.likes}} </h5>
+    <p ng-click='plusLike($index)'><button type="button"
+      name="button">Like</button></p>
+    <p ng-click='minusLike($index)'><button type="button"
+      name="button">Dislike</button></p>
+
+    </p>
+    <hr>
+  </article>
+</div>
+
+
 <img src="/images/starship-f-flag.png" />
 
 <article id="fancy">

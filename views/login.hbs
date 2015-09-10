@@ -3,8 +3,8 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <h1>{{title}} <3 Foundation</h1>
-        <p>Welcome to {{title}} & Foundation</p>
+        <h1>Log-in to play {{title}}</h1>
+        <p>{{title}}</p>
     </div>
 </div>
 
@@ -16,7 +16,7 @@
                 <div class="large-12 columns">
                     <label>
                       <span>email</span>
-                      <input type="text" placeholder="large-12.columns" />
+                      <input type="text" ng-model="email" placeholder="email" />
                     </label>
                 </div>
             </div>
@@ -24,19 +24,21 @@
                 <div class="large-4 medium-4 columns">
                   <label>
                     <span>password</span>
-                    <input type="text" placeholder="large-4.columns" />
+                    <input type="password" ng-model="pass" placeholder="*****" />
                   </label>
                 </div>
                 <div class="large-4 medium-4 columns">
-                  <label>
-                    <span>confirm pass</span>
-                    <input type="text" placeholder="large-4.columns" />
+                  <label ng-cloak ng-show="createMode">
+                    <span>confirm password</span>
+                    <input type="password" ng-model="confirm" placeholder="*****" />
                   </label>
                 </div>
-                <button>Log In</button>
-                <button>Register</button>
-                <button>Create Acount</button>
-                <button>Cancel</button>
+                <button ng-click="login(email, pass)" ng-hide="createMode">Log In</button>
+                <button ng-click="createMode = true" ng-hide="createMode">Register</button>
+                <button ng-cloak ng-show="createMode" ng-click="createAccount()">Create Account</button>
+                <button ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
+
+                <p ng-show="err" class="error">{{err}}</p>
             </div>
         </form>
 

@@ -1,7 +1,9 @@
 var express = require('express');
 var controller = express.Router();
+// Firebase inclusion, specifying my database url
 var Firebase = require('firebase');
 var gameRef = new Firebase("https://shining-heat-2898.firebaseio.com/");
+
 
 /* GET home page and set field. */
 controller.get('/', function(req, res, next) {
