@@ -1,0 +1,366 @@
+
+
+
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Warp Attack</h1>
+    </div>
+</div>
+<img src="/images/starship-f-flag.png" />
+
+<div id="fancy">
+  PAY NO ATTENTION
+</div>
+<table>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      6
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      8
+    </td>
+    <td>
+      9
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      6
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      8
+    </td>
+    <td>
+      9
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      6
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      8
+    </td>
+    <td>
+      9
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      6
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      8
+    </td>
+    <td>
+      9
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      6
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      8
+    </td>
+    <td>
+      9
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      6
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      8
+    </td>
+    <td>
+      9
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      6
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      8
+    </td>
+    <td>
+      9
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      6
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      8
+    </td>
+    <td>
+      9
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      6
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      8
+    </td>
+    <td>
+      9
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      6
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      8
+    </td>
+    <td>
+      9
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+
+</table>
+<ul id='add'></ul>
+
+<script>
+var fbref = new Firebase("https://shining-heat-2898.firebaseio.com/field/square");
+    $(document).foundation();
+    $(document).ready(function(){
+      // fbref.orderByChild('field').on('child_added', function (snapshot) {
+      //   console.log(snapshot.key() + ':' + snapshot.val().field);
+      // });
+      fbref.once('value',function(snapshot){
+        var arena = snapshot.val();
+        for (var key in arena) {
+          $('#add').append('<li>' + arena[key].shipId + '</li>');
+        }
+      });
+
+      // $.ajax({
+      //   url: 'https://shining-heat-2898.firebaseio.com/field/6.json',
+      //   success: function(data) {
+      //     console.log('ajax----');
+      //     console.log(data);
+      //   },
+      //   error: function(data) {
+      //     console.log('you lose');
+      //   }
+      // });
+
+    });
+
+</script>

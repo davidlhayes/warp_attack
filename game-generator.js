@@ -1,7 +1,7 @@
 function arena(gameId) {
   arenaStrObj = '{"gameId":"' + gameId + '","field":{';
  for (var i = 0; i < 100; i++) {
-      arenaStrObj = arenaStrObj + '"' + k + '":{"shipId":"0"}';
+      arenaStrObj = arenaStrObj + '"' + k + '":"shipId":"0"}';
       if (i < 100) arenaStrObj = arenaStrObj + ',';
  }
  arenaStrObj = arenaStrObj + '}}';
