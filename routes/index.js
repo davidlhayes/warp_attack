@@ -28,11 +28,12 @@ controller.get('/', function(req, res, next) {
   //   setGame(r,playerId);
   // };
 
-//   var newRef = new Firebase('https://shining-heat-2898.firebaseio.com/field');
-//   newRef.remove();
-//   for (var i=0;i<40;i++) {
-//     setSquare(i,i);
-//   }
+  var newRef = new Firebase('https://shining-heat-2898.firebaseio.com/field');
+  newRef.remove();
+  for (var i=0;i<10;i++) {
+    for (var j=0;j<10;j++)
+      setSquare(i,j,"0");
+  }
   res.render('index', { title: 'Warp Attack' });
 });
 // Add a game piece
@@ -45,10 +46,11 @@ controller.get('/', function(req, res, next) {
 //   newRef.update({"3:8":{'playerId':playerId,'fleet':'a','rank':'2','revealed':'false','pUrl':'/images/starship-a-2.png'}});
 // }
 // Fill a square
-function setSquare(square,shipId) {
-  var urlStr = 'https://shining-heat-2898.firebaseio.com/field/square';
+function setSquare(row,col,shipId) {
+  var urlStr = 'https://shining-heat-2898.firebaseio.com/field/';
   var newRef = new Firebase(urlStr);
-  urlStr = urlStr + '/' + square + '/shipId';
+  urlStr = urlStr + '/"' + row + ':' + col + '"';
+  // console.log(urlStr)
   newRef = new Firebase(urlStr);
   newRef.set(shipId);
 };
