@@ -19,7 +19,7 @@
               <input type="text" ng-model="enteredPassword">
           </div>
           <div>
-              <button type='submit' value='login'>Login</button> <button ng-click='addUser()'>Register</button>
+              <button ng-click='loginUser()'>Login</button> <button ng-click='addUser()'>Register</button> <button ng-click='logOutUser()'>Log Out</button>
           </div>
           <!-- <div >
               Oh, my! <p>{[{enteredPassword}]}</p>
@@ -28,7 +28,10 @@
 
       </div>
   </div>
-  <div ng-controller="warpCtrl">
+  <div ng-controller="PlayCtrl">
+      <button ng-click="authDataCallback()">Wanna see a secret word?</button>
+  </div>
+  <div ng-controller="WarpCtrl">
     <article ng-repeat="message in messages">
       UserName: <h3> {[{message.user}]} </h3>
       Date: <h3> {[{message.date | date}]}

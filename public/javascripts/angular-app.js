@@ -13,8 +13,8 @@ warpApp.controller('UserCtrl', function($scope) {
     console.log('name = ' + $scope.enteredName);
     console.log('password = ' + $scope.enteredPassword);
     ref.createUser({
-      email    : "bobtony@firebase.com",
-      password : "correcthorsebatterystaple"
+      email    : $scope.enteredName,
+      password : $scope.enteredPassword
     }, function(error, userData) {
       if (error) {
         console.log("Error creating user:", error);
@@ -22,9 +22,39 @@ warpApp.controller('UserCtrl', function($scope) {
         console.log("Successfully created user account with uid:", userData.uid);
       }
     })}
+    $scope.loginUser = function() {
+      console.log('name = ' + $scope.enteredName);
+      console.log('password = ' + $scope.enteredPassword);
+      ref.authWithPassword({
+        email    : $scope.enteredName,
+        password : $scope.enteredPassword
+      }, function(error, authData) {
+        if (error) {
+          console.log("Login Failed!", error);
+        } else {
+          console.log("Authenticated successfully with payload:", authData);
+        }
+      })}
+    $scope.logOutUser = function() {
+      ref.unauth();
+      console.log('You are logged out');
+    }
 });
 
-warpApp.controller('warpCtrl', ['$scope', function($scope) {
+warpApp.controller('PlayCtrl', function($scope) {
+    $scope.authDataCallback = function() {
+      console.log('you pressed play control');
+      var authData = ref.getAuth();
+      if (authData) {
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        console.log('The secret word is LOVE');
+      } else {
+        console.log('You may not see the secret word');
+      }
+    }
+});
+
+warpApp.controller('WarpCtrl', ['$scope', function($scope) {
   $scope.messages =
     [
       {
