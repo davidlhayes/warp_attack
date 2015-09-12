@@ -1,10 +1,10 @@
 "use strict";
-angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
+angular.module('waapp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
 
   .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/login', {
+    $routeProvider.when('/users', {
       controller: 'LoginCtrl',
-      templateUrl: 'login/login.html'
+      templateUrl: 'views/login.hbs'
     });
   }])
 
@@ -25,6 +25,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
     };
 
     $scope.createAccount = function() {
+      console.log('**** TRYING TO CREATE AN ACCOUNT ****')
       $scope.err = null;
       if( assertValidAccountProps() ) {
         var email = $scope.email;
@@ -44,6 +45,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
           })
           .then(function(/* user */) {
             // redirect to the account page
+            console.log('trying to go to account page');
             $location.path('/account');
           }, function(err) {
             $scope.err = errMessage(err);
