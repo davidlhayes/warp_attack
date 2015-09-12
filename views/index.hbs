@@ -1,4 +1,4 @@
-<div ng-app="waapp">
+<div ng-app="warpApp">
 
 
   <div class="row">
@@ -6,15 +6,29 @@
           <h1>{{title}}</h1>
       </div>
   </div>
-  <div class="row">
+  <h2>Login to Play</h2>
+  <div class="row" ng-controller="UserCtrl">
       <div class="large-12 columns">
-        <form class="" action="index.html" method="post">
-
+        <form>
+          <div class="row">
+              <label for="username">Username</label>
+              <input type="text" ng-model="enteredName">
+          </div>
+          <div class="row">
+              <label for="password">Password</label>
+              <input type="text" ng-model="enteredPassword">
+          </div>
+          <div>
+              <button type='submit' value='login'>Login</button> <button ng-click='addUser()'>Register</button>
+          </div>
+          <!-- <div >
+              Oh, my! <p>{[{enteredPassword}]}</p>
+          </div> -->
         </form>
 
       </div>
   </div>
-  <div ng-controller="waCtrl">
+  <div ng-controller="warpCtrl">
     <article ng-repeat="message in messages">
       UserName: <h3> {[{message.user}]} </h3>
       Date: <h3> {[{message.date | date}]}
@@ -30,7 +44,7 @@
       <hr>
     </article>
   </div>
-  
+
 
   <img src="/images/starship-f-flag.png" />
 

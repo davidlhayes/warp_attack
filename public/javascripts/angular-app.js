@@ -1,13 +1,30 @@
 // namespace and call Angular.js
-var waapp = angular.module('waapp', []);
+var warpApp = angular.module('warpApp', []);
+var ref = new Firebase("https://shining-heat-2898.firebaseio.com")
 
 // the code below is said to be needed for handlebars to work
-waapp.config(['$interpolateProvider', function($interpolateProvider) {
+warpApp.config(['$interpolateProvider', function($interpolateProvider) {
   $interpolateProvider.startSymbol('{[{');
   $interpolateProvider.endSymbol('}]}');
 }]);
 
-waapp.controller('waCtrl', ['$scope', function($scope) {
+warpApp.controller('UserCtrl', function($scope) {
+  $scope.addUser = function() {
+    console.log('name = ' + $scope.enteredName);
+    console.log('password = ' + $scope.enteredPassword);
+    ref.createUser({
+      email    : "bobtony@firebase.com",
+      password : "correcthorsebatterystaple"
+    }, function(error, userData) {
+      if (error) {
+        console.log("Error creating user:", error);
+      } else {
+        console.log("Successfully created user account with uid:", userData.uid);
+      }
+    })}
+});
+
+warpApp.controller('warpCtrl', ['$scope', function($scope) {
   $scope.messages =
     [
       {

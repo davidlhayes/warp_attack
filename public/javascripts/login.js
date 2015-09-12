@@ -1,5 +1,5 @@
 "use strict";
-angular.module('waapp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
+angular.module('warpApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
 
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/users', {
