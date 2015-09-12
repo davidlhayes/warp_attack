@@ -46,23 +46,116 @@ warpApp.controller('UserCtrl', function($scope) {
                 var key = childSnapshot.key();
                 var childData = childSnapshot.val();
                 console.log('key: ' + key);
+          // get the path to the specific game
                 var newRef = new Firebase(FURL + "/gameBoard/" + key);
+          // determine which fleet (which color/side of board) is already
+          // taken and assign the other one.
                 newRef.once("value", function(snapshot) {
-                  console.log('**** BEGIN ****');
                   if (snapshot.child("federation").exists()) {
-                    console.log('**** ONE ****');
                     if (snapshot.child("alliance").exists()) {
-                      console.log('**** TWO *****');
                       alert('No room for more players');
                     } else {
-                      console.log('***** THREE ******');
+                        console.log('HEY HEY')
                       newRef.update({"alliance": playerId});
+                      // Fleets assigned, add pieces to tray
+                        var aPath = newRef.child('alliance').toString();
+                        var aRef = new Firebase(aPath);
+                        var pRef = new Firebase(aPath + '/pieces');
+                        console.log(aPath);
+
+                        pRef.update({"0":{"fleet":"a","rank":"1","revealed":false,"url":"/images/starship-a-1.png"},
+                        "1":{"fleet":"a","rank":"2","revealed":false,"url":"/images/starship-a-2.png"},
+                        "2":{"fleet":"a","rank":"3","revealed":false,"url":"/images/starship-a-3.png"},
+                        "3":{"fleet":"a","rank":"3","revealed":false,"url":"/images/starship-a-3.png"},
+                        "4":{"fleet":"a","rank":"4","revealed":false,"url":"/images/starship-a-4.png"},
+                        "5":{"fleet":"a","rank":"4","revealed":false,"url":"/images/starship-a-4.png"},
+                        "6":{"fleet":"a","rank":"4","revealed":false,"url":"/images/starship-a-4.png"},
+                        "7":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
+                        "8":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
+                        "9":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
+                        "10":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
+                        "11":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
+                        "12":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
+                        "13":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
+                        "14":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
+                        "15":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
+                        "16":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
+                        "17":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
+                        "18":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
+                        "19":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
+                        "20":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
+                        "21":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
+                        "22":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
+                        "23":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
+                        "24":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "25":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "26":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "27":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "28":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "29":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "30":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "31":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "32":{"fleet":"a","rank":"suicide","revealed":false,"url":"/images/starship-a-suicide.png"},
+                        "33":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "34":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "35":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "36":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "37":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "38":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "39":{"fleet":"a","rank":"flag","revealed":false,"url":"/images/starship-a-flag.png"}});
+
                     }
                   } else {
-                      console.log('**** FOUR ****');
+                      var gamePath = newRef.update({"federation": playerId});
+                      // console.log('Team Path: ' + gamePath.toString());
+                      // Fleets assigned, add pieces to tray
                       newRef.update({"federation": playerId});
-
+                      // Fleets assigned, add pieces to tray
+                        var fPath = newRef.child('federation').toString();
+                        var fRef = new Firebase(fPath);
+                        var pRef = new Firebase(fPath + '/pieces');
+                      pRef.update({"0":{"fleet":"f","rank":"1","revealed":false,"url":"/images/starship-f-1.png"},
+                      "1":{"fleet":"f","rank":"2","revealed":false,"url":"/images/starship-f-2.png"},
+                      "2":{"fleet":"f","rank":"3","revealed":false,"url":"/images/starship-f-3.png"},
+                      "3":{"fleet":"f","rank":"3","revealed":false,"url":"/images/starship-f-3.png"},
+                      "4":{"fleet":"f","rank":"4","revealed":false,"url":"/images/starship-f-4.png"},
+                      "5":{"fleet":"f","rank":"4","revealed":false,"url":"/images/starship-f-4.png"},
+                      "6":{"fleet":"f","rank":"4","revealed":false,"url":"/images/starship-f-4.png"},
+                      "7":{"fleet":"f","rank":"5","revealed":false,"url":"/images/starship-f-5.png"},
+                      "8":{"fleet":"f","rank":"5","revealed":false,"url":"/images/starship-f-5.png"},
+                      "9":{"fleet":"f","rank":"5","revealed":false,"url":"/images/starship-f-5.png"},
+                      "10":{"fleet":"f","rank":"5","revealed":false,"url":"/images/starship-f-5.png"},
+                      "11":{"fleet":"f","rank":"6","revealed":false,"url":"/images/starship-f-6.png"},
+                      "12":{"fleet":"f","rank":"6","revealed":false,"url":"/images/starship-f-6.png"},
+                      "13":{"fleet":"f","rank":"6","revealed":false,"url":"/images/starship-f-6.png"},
+                      "14":{"fleet":"f","rank":"6","revealed":false,"url":"/images/starship-f-6.png"},
+                      "15":{"fleet":"f","rank":"7","revealed":false,"url":"/images/starship-f-7.png"},
+                      "16":{"fleet":"f","rank":"7","revealed":false,"url":"/images/starship-f-7.png"},
+                      "17":{"fleet":"f","rank":"7","revealed":false,"url":"/images/starship-f-7.png"},
+                      "18":{"fleet":"f","rank":"7","revealed":false,"url":"/images/starship-f-7.png"},
+                      "19":{"fleet":"f","rank":"8","revealed":false,"url":"/images/starship-f-8.png"},
+                      "20":{"fleet":"f","rank":"8","revealed":false,"url":"/images/starship-f-8.png"},
+                      "21":{"fleet":"f","rank":"8","revealed":false,"url":"/images/starship-f-8.png"},
+                      "22":{"fleet":"f","rank":"8","revealed":false,"url":"/images/starship-f-8.png"},
+                      "23":{"fleet":"f","rank":"8","revealed":false,"url":"/images/starship-f-8.png"},
+                      "24":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
+                      "25":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
+                      "26":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
+                      "27":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
+                      "28":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
+                      "29":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
+                      "30":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
+                      "31":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
+                      "32":{"fleet":"f","rank":"suicide","revealed":false,"url":"/images/starship-f-suicide.png"},
+                      "33":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "34":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "35":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "36":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "37":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "38":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "39":{"fleet":"f","rank":"flag","revealed":false,"url":"/images/starship-f-flag.png"}});
                   }
+
                 });
               });
 
@@ -70,15 +163,18 @@ warpApp.controller('UserCtrl', function($scope) {
               // console.log("Object:" + dataSnapshot.numChildren());
               // console.log(gameBoard.toString());
               } else {
-              console.log('um.....');
 
               newRef = new Firebase(FURL + "/gameBoard");
-
 
               var playerRef = newRef.push({"alliance":playerId});
               var gamePath = playerRef.toString();
 
             }
+
+
+
+
+
 
           });
           // end game set portion
@@ -136,7 +232,40 @@ warpApp.controller('WarpCtrl', ['$scope', function($scope) {
     };
 }]);
 
-// Generate a Game ID from a shorter version of a psuedo-guid generator
-function randId() {
-return 'xxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
+// Generate all the pieces needed.
+// 9-12 Using the hard-coded results of this object. Inserting it into the
+// Firebase update command as a variable throws an error and I need to move on.
+
+function pieces(playerId,fleet) {
+  // define piece rank and number of pieces per rank
+  var rank = ['1','2','3','4','5','6','7','8','9','suicide','mine','flag'];
+  var dist = [ 1 , 1 , 2 , 3 , 4 , 4 , 4 , 5 , 8 ,    1    ,   6  ,   1  ];
+
+  var pStrObj = '{';
+  var url_prefix = '/images/starship-';
+  var pId = 0;
+  var f = '';
+  switch (fleet) {
+    case 'federation':
+      f = 'f';
+    case 'alliance':
+      f = 'a';
+    default:
+      f = 'f';
+  }
+  for (var r in rank) {
+    for (var i=0;i< dist[r];i++) {
+       pStrObj =
+       pStrObj +'"' + pId + '":' +
+                '{"fleet":"' + f + '",' +
+                '"rank":"' + rank[r] + '",' +
+                '"revealed":' + false + ',' +
+                '"url":"' + url_prefix + f + '-' + rank[r] + '.png"}';
+       if (r < rank.length-1) { pStrObj = pStrObj + ','}
+       pId = pId + 1;
+    }
+  }
+  pStrObj = pStrObj + '}';
+  pObj = pStrObj
+  return pObj;
 }

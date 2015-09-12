@@ -52,9 +52,5 @@ function setSquare(square,shipId) {
   newRef = new Firebase(urlStr);
   newRef.set(shipId);
 };
-// Generate a Game ID from a shorter version of a psuedo-guid generator
-function randId() {
-return 'xxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
-}
 
 module.exports = controller;
