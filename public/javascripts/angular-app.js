@@ -1,5 +1,6 @@
 // namespace and call Angular.js
 var warpApp = angular.module('warpApp', []);
+var FURL = "https://shining-heat-2898.firebaseio.com";
 var ref = new Firebase("https://shining-heat-2898.firebaseio.com")
 
 // the code below is said to be needed for handlebars to work
@@ -32,7 +33,55 @@ warpApp.controller('UserCtrl', function($scope) {
         if (error) {
           console.log("Login Failed!", error);
         } else {
-          console.log("Authenticated successfully with payload:", authData);
+          // console.log("Authenticated most successfully with payload:", authData);
+          // console.log("How's my hair?");
+          // hook this user up with a partner or let them choose a side
+          var gameBoard = new Firebase(FURL + "/gameBoard");
+          var playerId = authData.uid;
+          // gameBoard.remove();
+          gameBoard.once('value', function(dataSnapshot) {
+            if (dataSnapshot.exists()) {
+              var obj = dataSnapshot;
+                obj.forEach(function(childSnapshot) {
+                var key = childSnapshot.key();
+                var childData = childSnapshot.val();
+                console.log('key: ' + key);
+                var newRef = new Firebase(FURL + "/gameBoard/" + key);
+                newRef.once("value", function(snapshot) {
+                  console.log('**** BEGIN ****');
+                  if (snapshot.child("federation").exists()) {
+                    console.log('**** ONE ****');
+                    if (snapshot.child("alliance").exists()) {
+                      console.log('**** TWO *****');
+                      alert('No room for more players');
+                    } else {
+                      console.log('***** THREE ******');
+                      newRef.update({"alliance": playerId});
+                    }
+                  } else {
+                      console.log('**** FOUR ****');
+                      newRef.update({"federation": playerId});
+
+                  }
+                });
+              });
+
+              // console.log(dataSnapshot);
+              // console.log("Object:" + dataSnapshot.numChildren());
+              // console.log(gameBoard.toString());
+              } else {
+              console.log('um.....');
+
+              newRef = new Firebase(FURL + "/gameBoard");
+
+
+              var playerRef = newRef.push({"alliance":playerId});
+              var gamePath = playerRef.toString();
+
+            }
+
+          });
+          // end game set portion
         }
       })}
     $scope.logOutUser = function() {
@@ -86,3 +135,8 @@ warpApp.controller('WarpCtrl', ['$scope', function($scope) {
       $scope.messages[index].likes -= 1;
     };
 }]);
+
+// Generate a Game ID from a shorter version of a psuedo-guid generator
+function randId() {
+return 'xxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
+}
