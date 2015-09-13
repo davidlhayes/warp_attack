@@ -63,46 +63,46 @@ warpApp.controller('UserCtrl', function($scope) {
                         var pRef = new Firebase(aPath + '/pieces');
                         console.log(aPath);
 
-                        pRef.update({"0":{"fleet":"a","rank":"1","revealed":false,"url":"/images/starship-a-1.png"},
-                        "1":{"fleet":"a","rank":"2","revealed":false,"url":"/images/starship-a-2.png"},
-                        "2":{"fleet":"a","rank":"3","revealed":false,"url":"/images/starship-a-3.png"},
-                        "3":{"fleet":"a","rank":"3","revealed":false,"url":"/images/starship-a-3.png"},
-                        "4":{"fleet":"a","rank":"4","revealed":false,"url":"/images/starship-a-4.png"},
-                        "5":{"fleet":"a","rank":"4","revealed":false,"url":"/images/starship-a-4.png"},
-                        "6":{"fleet":"a","rank":"4","revealed":false,"url":"/images/starship-a-4.png"},
-                        "7":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
-                        "8":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
-                        "9":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
-                        "10":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
-                        "11":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
-                        "12":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
-                        "13":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
-                        "14":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
-                        "15":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
-                        "16":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
-                        "17":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
-                        "18":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
-                        "19":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
-                        "20":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
-                        "21":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
-                        "22":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
-                        "23":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
-                        "24":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
-                        "25":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
-                        "26":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
-                        "27":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
-                        "28":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
-                        "29":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
-                        "30":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
-                        "31":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
-                        "32":{"fleet":"a","rank":"suicide","revealed":false,"url":"/images/starship-a-suicide.png"},
-                        "33":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
-                        "34":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
-                        "35":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
-                        "36":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
-                        "37":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
-                        "38":{"fleet":"a","rank":"mine","revealed":false,"url":"/images/starship-a-mine.png"},
-                        "39":{"fleet":"a","rank":"flag","revealed":false,"url":"/images/starship-a-flag.png"}});
+                        pRef.update({"40":{"fleet":"a","rank":"1","revealed":false,"url":"/images/starship-a-1.png"},
+                        "41":{"fleet":"a","rank":"2","revealed":false,"url":"/images/starship-a-2.png"},
+                        "42":{"fleet":"a","rank":"3","revealed":false,"url":"/images/starship-a-3.png"},
+                        "43":{"fleet":"a","rank":"3","revealed":false,"url":"/images/starship-a-3.png"},
+                        "44":{"fleet":"a","rank":"4","revealed":false,"url":"/images/starship-a-4.png"},
+                        "45":{"fleet":"a","rank":"4","revealed":false,"url":"/images/starship-a-4.png"},
+                        "46":{"fleet":"a","rank":"4","revealed":false,"url":"/images/starship-a-4.png"},
+                        "47":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
+                        "48":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
+                        "49":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
+                        "50":{"fleet":"a","rank":"5","revealed":false,"url":"/images/starship-a-5.png"},
+                        "51":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
+                        "52":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
+                        "53":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
+                        "54":{"fleet":"a","rank":"6","revealed":false,"url":"/images/starship-a-6.png"},
+                        "55":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
+                        "56":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
+                        "57":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
+                        "58":{"fleet":"a","rank":"7","revealed":false,"url":"/images/starship-a-7.png"},
+                        "59":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
+                        "60":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
+                        "61":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
+                        "62":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
+                        "63":{"fleet":"a","rank":"8","revealed":false,"url":"/images/starship-a-8.png"},
+                        "64":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "65":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "66":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "67":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "68":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "69":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "70":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "71":{"fleet":"a","rank":"9","revealed":false,"url":"/images/starship-a-9.png"},
+                        "72":{"fleet":"a","rank":"S","revealed":false,"url":"/images/starship-a-suicide.png"},
+                        "73":{"fleet":"a","rank":"M","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "74":{"fleet":"a","rank":"M","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "75":{"fleet":"a","rank":"M","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "76":{"fleet":"a","rank":"M","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "77":{"fleet":"a","rank":"M","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "78":{"fleet":"a","rank":"M","revealed":false,"url":"/images/starship-a-mine.png"},
+                        "79":{"fleet":"a","rank":"F","revealed":false,"url":"/images/starship-a-flag.png"}});
 
                     }
                   } else {
@@ -146,14 +146,14 @@ warpApp.controller('UserCtrl', function($scope) {
                       "29":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
                       "30":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
                       "31":{"fleet":"f","rank":"9","revealed":false,"url":"/images/starship-f-9.png"},
-                      "32":{"fleet":"f","rank":"suicide","revealed":false,"url":"/images/starship-f-suicide.png"},
-                      "33":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
-                      "34":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
-                      "35":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
-                      "36":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
-                      "37":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
-                      "38":{"fleet":"f","rank":"mine","revealed":false,"url":"/images/starship-f-mine.png"},
-                      "39":{"fleet":"f","rank":"flag","revealed":false,"url":"/images/starship-f-flag.png"}});
+                      "32":{"fleet":"f","rank":"S","revealed":false,"url":"/images/starship-f-suicide.png"},
+                      "33":{"fleet":"f","rank":"M","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "34":{"fleet":"f","rank":"M","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "35":{"fleet":"f","rank":"M","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "36":{"fleet":"f","rank":"M","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "37":{"fleet":"f","rank":"M","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "38":{"fleet":"f","rank":"M","revealed":false,"url":"/images/starship-f-mine.png"},
+                      "39":{"fleet":"f","rank":"F","revealed":false,"url":"/images/starship-f-flag.png"}});
                   }
 
                 });
@@ -200,36 +200,36 @@ warpApp.controller('PlayCtrl', function($scope) {
 });
 
 warpApp.controller('WarpCtrl', ['$scope', function($scope) {
-//   $scope.messages =
-//     [
-//       {
-//         user: 'Tom',
-//         date: new Date('2015', '09', '09'),
-//         image: 'http://www.cardinalsushi.com/images/soda.jpg',
-//         text: 'Backbone stinks!',
-//         likes: 0
-//       },
-//       {
-//         user: 'James',
-//         date: new Date('2015', '09', '09'),
-//         image: 'http://www.vetprofessionals.com/catprofessional/images/home-cat.jpg',
-//         text: 'Tom stinks! React+Backbone for life!',
-//         likes: 0
-//       },
-//       {
-//         user: 'Tristan',
-//         date: new Date('2015', '09', '09'),
-//         image: 'http://toytrucktoys.com/wp-content/uploads/2010/12/american-plastic-toy.jpg',
-//         text: 'Nah!',
-//         likes: 0
-//       }
-//     ],
-//     $scope.plusLike = function(index) {
-//       $scope.messages[index].likes += 1;
-//     };
-//     $scope.minusLike = function(index) {
-//       $scope.messages[index].likes -= 1;
-//     };
+  $scope.messages =
+    [
+      {
+        user: 'Tom',
+        date: new Date('2015', '09', '09'),
+        image: 'http://www.cardinalsushi.com/images/soda.jpg',
+        text: 'Backbone stinks!',
+        likes: 0
+      },
+      {
+        user: 'James',
+        date: new Date('2015', '09', '09'),
+        image: 'http://www.vetprofessionals.com/catprofessional/images/home-cat.jpg',
+        text: 'Tom stinks! React+Backbone for life!',
+        likes: 0
+      },
+      {
+        user: 'Tristan',
+        date: new Date('2015', '09', '09'),
+        image: 'http://toytrucktoys.com/wp-content/uploads/2010/12/american-plastic-toy.jpg',
+        text: 'Nah!',
+        likes: 0
+      }
+    ],
+    $scope.plusLike = function(index) {
+      $scope.messages[index].likes += 1;
+    };
+    $scope.minusLike = function(index) {
+      $scope.messages[index].likes -= 1;
+    };
 }]
 );
 
@@ -244,13 +244,15 @@ function pieces(playerId,fleet) {
 
   var pStrObj = '{';
   var url_prefix = '/images/starship-';
-  var pId = 0;
   var f = '';
+  var pId = 0;
   switch (fleet) {
     case 'federation':
       f = 'f';
+      pId = 0;
     case 'alliance':
       f = 'a';
+      pId = 40;
     default:
       f = 'f';
   }

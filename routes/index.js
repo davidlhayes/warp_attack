@@ -27,13 +27,30 @@ controller.get('/', function(req, res, next) {
   //   var r = randId();
   //   setGame(r,playerId);
   // };
-
+  // store the playing field
   var newRef = new Firebase('https://shining-heat-2898.firebaseio.com/field');
   newRef.remove();
   for (var i=0;i<10;i++) {
     for (var j=0;j<10;j++)
-      setSquare(i,j,"0");
+      setSquare("field",i,j,"0");
   }
+  // store the federation tray with pieces
+  var k=0;
+  for (var i=0;i<4;i++) {
+    for (var j=0;j<10;j++) {
+      setSquare("ftray",i,j,k)
+      k++;
+    }
+  }
+  // store the alliance tray with pieces
+  var k=40;
+  for (var i=0;i<4;i++) {
+    for (var j=0;j<10;j++) {
+      setSquare("atray",i,j,k)
+      k++;
+    }
+  }
+
   res.render('index', { title: 'Warp Attack' });
 });
 // Add a game piece
@@ -46,8 +63,8 @@ controller.get('/', function(req, res, next) {
 //   newRef.update({"3:8":{'playerId':playerId,'fleet':'a','rank':'2','revealed':'false','pUrl':'/images/starship-a-2.png'}});
 // }
 // Fill a square
-function setSquare(row,col,shipId) {
-  var urlStr = 'https://shining-heat-2898.firebaseio.com/field/';
+function setSquare(domain,row,col,shipId) {
+  var urlStr = 'https://shining-heat-2898.firebaseio.com/' + domain + '/';
   var newRef = new Firebase(urlStr);
   urlStr = urlStr + '/"' + row + ':' + col + '"';
   // console.log(urlStr)
