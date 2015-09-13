@@ -3,18 +3,37 @@
 
 // identify the addresses of the data
 var baseURL = "https://shining-heat-2898.firebaseio.com";
-var aURL = baseURL + "/gameBoard/-Jz3d0Q_y42RXmkcBD2Z/alliance";
+var aURL = baseURL + "/gameBoard/-Jz3d0Q_y42RXmkcBD2Z/alliance/pieces";
 var fURL = baseURL + "/gameBoard/-Jz3d0Q_y42RXmkcBD2Z/federation";
+var wData = {};
 
-var setUpPiece = function() {
+// var dataURL = "";
+
+function setUpPiece() {
 
 }
 
-var movePiece = function() {
+function movePiece() {
   // checkSquare
 }
 
-var showPieces = function() {
+
+function showPieces() {
+// ajax call to retrieve the data
+
+$.ajax({
+    url : aURL + '.json',
+    success : function(result) {
+      wData = result;
+      for (var key in wData) {
+      	console.log('key: ' + key + ' value: ' + wData[key]);
+      }
+      return result;
+    }
+});
+
+
+
   for (i=0; i<4; i++) {
     for (j=0; j<10; j++) {
 
@@ -22,16 +41,8 @@ var showPieces = function() {
   }
 }
 
-var rank = function(pId) {
-  var dataURL = "";
-  if (pId > 39) {
-    dataURL = aURL;
-  } else {
-    dataURL = fURL;
-  }
-  var ref = new Firebase(dataURL);
-  console.log(dataURL);
-  ref.orderByChild('pieces').equalTo(pId).on('value', function(snapshot) {
-      return snapshot.key()
-    });
+function rank(pId) {
+
+
+
 }

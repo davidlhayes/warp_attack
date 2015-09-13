@@ -272,3 +272,26 @@ function pieces(playerId,fleet) {
   pObj = pStrObj
   return pObj;
 }
+
+// The following was an attempt to retrieve data with Firebase commands.
+// 9/13/2015- resorting to Ajax.
+// var dataURL = 'https://shining-heat-2898.firebaseio.com/gameBoard/-Jz3d0Q_y42RXmkcBD2Z/federation/33';
+//
+// var rank = function(pId) {
+//   // var dataURL = "";
+//   if (pId > 39) {
+//     dataURL = aURL + '/' + pId;
+//   } else {
+//     dataURL = fURL + '/' + pId;
+//   }
+//   var ref = new Firebase(dataURL);
+//   console.log(dataURL);
+//   ref.once('value', function(dataSnapshot) {
+//     console.log("data " + dataSnapshot.key());
+//   }, function(err) {
+//     console.log('I cannot');
+//   });
+//   var query = ref.limitToFirst(5);
+//   var refToSameLocation = query.ref();
+//   console.log(refToSameLocation);
+// }
