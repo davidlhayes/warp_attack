@@ -9,7 +9,7 @@
     settings : {
       live_validate : true,
       validate_on_blur : true,
-      // validate_on: 'tab', // tab (when user tabs between fields), change (input changes), manual (call custom events) 
+      // validate_on: 'tab', // tab (when user tabs between Boards), change (input changes), manual (call custom events) 
       focus_on_invalid : true,
       error_labels : true, // labels with a for="inputId" will recieve an `error` class
       error_class : 'error',

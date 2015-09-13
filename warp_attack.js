@@ -49,7 +49,7 @@ movepiece = function(start_row,start_col,finish_row,finish_col) {
     }
 
 }
-checksquare = function(start_row,start_col,finish_row,finish_col) {
+Board = function(start_row,start_col,finish_row,finish_col) {
     // border, black hole, more than one space
 
     if (board[start_row-1][start_col-1] === null) {

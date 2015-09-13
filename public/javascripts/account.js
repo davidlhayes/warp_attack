@@ -21,7 +21,7 @@
       $scope.changePassword = function(pass, confirm, newPass) {
         resetMessages();
         if( !pass || !confirm || !newPass ) {
-          $scope.err = 'Please fill in all password fields';
+          $scope.err = 'Please fill in all password Boards';
         }
         else if( newPass !== confirm ) {
           $scope.err = 'New pass and confirm do not match';

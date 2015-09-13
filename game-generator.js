@@ -1,5 +1,5 @@
 function arena(gameId) {
-  arenaStrObj = '{"gameId":"' + gameId + '","field":{';
+  arenaStrObj = '{"gameId":"' + gameId + '","Board":{';
  for (var i = 0; i < 100; i++) {
       arenaStrObj = arenaStrObj + '"' + k + '":"shipId":"0"}';
       if (i < 100) arenaStrObj = arenaStrObj + ',';
@@ -9,7 +9,7 @@ function arena(gameId) {
 }
 
 function tray(gameId) {
-  trayStrObj = '{"gameId":"' + gameId + '","field":{';
+  trayStrObj = '{"gameId":"' + gameId + '","Board":{';
  for (var i = 0; i < 40; i++) {
       trayStrObj = trayStrObj + '"' + k + '":{"shipId":"0"}';
       if (i < 40) trayStrObj = trayStrObj + ',';
@@ -52,8 +52,8 @@ function pieces(playerId,fleet) {
   return pObj;
 }
 
-function checkSquare(row,col) {
+function Board(row,col) {
   console.log(arena('A'));
 }
 
-checkSquare(4,4);
+Board(4,4);

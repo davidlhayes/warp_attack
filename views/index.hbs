@@ -376,11 +376,11 @@
 
 </div>
 <script>
-var fbref = new Firebase("https://shining-heat-2898.firebaseio.com/field/square");
+var fbref = new Firebase("https://shining-heat-2898.firebaseio.com/Board/square");
     $(document).foundation();
     $(document).ready(function(){
-      // fbref.orderByChild('field').on('child_added', function (snapshot) {
-      //   console.log(snapshot.key() + ':' + snapshot.val().field);
+      // fbref.orderByChild('Board').on('child_added', function (snapshot) {
+      //   console.log(snapshot.key() + ':' + snapshot.val().Board);
       // });
       fbref.once('value',function(snapshot){
         var arena = snapshot.val();
@@ -390,7 +390,7 @@ var fbref = new Firebase("https://shining-heat-2898.firebaseio.com/field/square"
       });
 
       // $.ajax({
-      //   url: 'https://shining-heat-2898.firebaseio.com/field/6.json',
+      //   url: 'https://shining-heat-2898.firebaseio.com/Board/6.json',
       //   success: function(data) {
       //     console.log('ajax----');
       //     console.log(data);

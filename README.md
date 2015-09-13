@@ -25,7 +25,7 @@ Warp Attack is a clone of Stratego, but with starships (in the vein of Star Trek
 1. Press New Game
 2. Choose a Color
 3. Tray fills with your pieces
-4. Move pieces to your starting field
+4. Move pieces to your starting Board
 5. Opponents pieces are represented as 'blanks' or a simple logo.
 6. App will indicate Ready, Reset Pieces, or Cancel
 7. When your turn is indicated "Red Move/Blue Move", move a

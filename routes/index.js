@@ -8,7 +8,7 @@ var ref = new Firebase("https://shining-heat-2898.firebaseio.com/");
 // if (authData) playerId = authData.uid;
 //   console.log("auth:" + authData);
 
-/* GET home page and set field. */
+/* GET home page and set Board. */
 controller.get('/', function(req, res, next) {
   // console.log(authData);
   //
@@ -27,12 +27,12 @@ controller.get('/', function(req, res, next) {
   //   var r = randId();
   //   setGame(r,playerId);
   // };
-  // store the playing field
-  var newRef = new Firebase('https://shining-heat-2898.firebaseio.com/field');
+  // store the playing Board
+  var newRef = new Firebase('https://shining-heat-2898.firebaseio.com/Board');
   newRef.remove();
   for (var i=0;i<10;i++) {
     for (var j=0;j<10;j++)
-      setSquare("field",i,j,"0");
+      setSquare("Board",i,j,"0");
   }
   // store the federation tray with pieces
   var k=0;

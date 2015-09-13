@@ -2,7 +2,7 @@
 <h2>Account</h2>
 
 <form>
-    <fieldset>
+    <Boardset>
         <legend>Profile</legend>
 
         <label>
@@ -14,11 +14,11 @@
             <span>Email:</span>
             <br />{{profile.email}}
         </label>
-    </fieldset>
+    </Boardset>
 </form>
 
 <form>
-    <fieldset>
+    <Boardset>
         <legend>Change Password</legend>
 
         <label>
@@ -40,11 +40,11 @@
 
         <p class="error" ng-show="err">{{err}}</p>
         <p class="good" ng-show="msg">{{msg}}</p>
-    </fieldset>
+    </Boardset>
 </form>
 
 <form>
-    <fieldset>
+    <Boardset>
         <legend>Change Email</legend>
 
         <label>
@@ -61,7 +61,7 @@
 
         <p class="error" ng-show="emailerr">{{emailerr}}</p>
         <p class="good" ng-show="emailmsg">{{emailmsg}}</p>
-    </fieldset>
+    </Boardset>
 </form>
 
 <button ng-click="logout()">Log Out</button>

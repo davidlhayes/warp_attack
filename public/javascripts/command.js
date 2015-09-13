@@ -26,6 +26,7 @@ var Token = [
           [ 'a' , '8' , false , '/images/starship-a-8.png'],
           [ 'a' , '8' , false , '/images/starship-a-8.png'],
           [ 'a' , '8' , false , '/images/starship-a-8.png'],
+          [ 'a' , '8' , false , '/images/starship-a-8.png'],
           [ 'a' , '9' , false , '/images/starship-a-9.png'],
           [ 'a' , '9' , false , '/images/starship-a-9.png'],
           [ 'a' , '9' , false , '/images/starship-a-9.png'],
@@ -65,6 +66,7 @@ var Token = [
           [ 'f' , '8' , false , '/images/starship-f-8.png'],
           [ 'f' , '8' , false , '/images/starship-f-8.png'],
           [ 'f' , '8' , false , '/images/starship-f-8.png'],
+          [ 'f' , '8' , false , '/images/starship-f-8.png'],
           [ 'f' , '9' , false , '/images/starship-f-9.png'],
           [ 'f' , '9' , false , '/images/starship-f-9.png'],
           [ 'f' , '9' , false , '/images/starship-f-9.png'],
@@ -82,8 +84,8 @@ var Token = [
           [ 'f' , 'M' , false , '/images/starship-f-mine.png'],
           [ 'f' , 'F' , false , '/images/starship-f-flag.png']
       ]
-// The initial, empty playing field.
-var Field = [
+// The initial, empty playing Board.
+var Board = [
       [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ],
       [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ],
       [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ],
@@ -120,16 +122,16 @@ var wData = {};
 
 // var dataURL = "";
 
-function setToken(token,destinationR,destinationC) {
-    var tokenOrigin = findToken(token); // find token anywhere in trays or on field
-    console.log('token ' + token + ' tokenOrigin: ' + tokenOrigin + ' destinationR: ' + destinationR + ' destinationC: ' + destinationC);
+function setToken(token,dstR,dstC) {
+    var tokenOrigin = findToken(token); // find token anywhere in trays or on Board
+    console.log('token ' + token + ' tokenOrigin: ' + tokenOrigin + ' dstR: ' + dstR + ' dstC: ' + dstC);
     if (tokenOrigin.length==3) {        // valid return array [ 'array', row, col ]
       var originR = tokenOrigin[1];
       var originC = tokenOrigin[2];
-      if (Field[destinationR][destinationC] == -1) {
+      if (Board[dstR][dstC] == -1) {
         if (tokenOrigin[0] == 'TrayA') {
-          if (destinationR < 4) {
-            Field[destinationR][destinationC] = TrayA[originR][originC];
+          if (dstR < 4) {
+            Board[dstR][dstC] = TrayA[originR][originC];
             TrayA[originR][originC] = -1;
             // showAll();
             return true;
@@ -138,8 +140,8 @@ function setToken(token,destinationR,destinationC) {
               return false;
           }
         } else if (tokenOrigin[0] == 'TrayF') {
-          if (destinationR > 5) {
-            Field[destinationR][destinationC] = TrayF[originR][originC];
+          if (dstR > 5) {
+            Board[dstR][dstC] = TrayF[originR][originC];
             TrayF[originR][originC] = -1;
             // showAll();
             return true;
@@ -154,7 +156,7 @@ function setToken(token,destinationR,destinationC) {
         }
       } else {
         // showAll();
-        console.log('Space + ' + destinationR + ':' + destinationC + ' is occupied');
+        console.log('Space + ' + dstR + ':' + dstC + ' is occupied');
         return false;
       }
     } else {
@@ -165,37 +167,147 @@ function setToken(token,destinationR,destinationC) {
 };
 
 function tokenUnset(token) {
+    var orgCell = findToken(token); // 3 element array returned: arrayname, row, col
     if (token < 40) {
-      var openCell = getIndexOfK(TrayA,0);
-      if (openCell != null) {
-        TrayF[openCell[0]][openCell[1]] = Field[destinationR][destinationC];
-        Field[destinationR][destinationC] = 0;
+      var openCell = getIndexOfK(TrayA,-1);  // 2 element array: row, col
+      if (TrayA[openCell[0]][openCell[1]] == -1) {
+        TrayA[openCell[0]][openCell[1]] = Board[orgCell[1]][orgCell[2]];
+        Board[orgCell[1]][orgCell[2]] = -1;
       } else {
         console.log('Error! Tray appears to be full!');
       }
     } else {
-      var openCell =  getIndexOfK(TrayF,0);
-      if (openCell != null) {
-        TrayF[openCell[0]][openCell[1]] = Field[destinationR][destinationC];
-        Field[destinationR][destinationC] = 0;
+      var openCell =  getIndexOfK(TrayF,-1);
+      if (TrayF[openCell[0]][openCell[1]] == -1) {
+        TrayF[openCell[0]][openCell[1]] = Board[orgCell[1]][orgCell[2]];
+        Board[orgCell[1]][orgCell[2]] = -1;
       } else {
         console.log('Error! Tray appears to be full!');
       }
     }
 };
 
-function movetoken() {
-  // checkSquare
+// The game brain is here
+
+function moveToken(token,dstR,dstC) {
+  var origin = findToken(token);  // 3-element array: arrayname, row, col
+  var result = checkMove(token,dstR,dstC);
+  // move if space is available
+  if (result=='empty') {
+    Board[dstR][dstC] = token;
+    Board[origin[1]][origin[2]] = -1;
+  } else if (result=='enemy') { // battle if space is occupied by an enemy
+    // check for suicide case (S beats 1)
+    if (Token[token][1]=='S' && Token[Board[dstR][dstC]]=='1') {
+      //the mover takes the attacked space;
+      Board[dstR][dstC] = token;
+      // find a tray space for the loser
+      tokenUnset(Board[dstR][dstC]);
+    } else if (Token[token][1]=='1' && Token[Board[dstR][dstC]]=='S')  {
+      // mover is the loser
+      tokenUnset(token);
+      // reveal the victor for the rest of the game
+      Token[Board[dstR][dstC]][2] = true;
+      // special case where attacked square is a mine, but token is not rank 8 (minesweeper)
+    } else if ((Token[Board[dstR][dstC]]=='M') && (Token[token][8] != 8)) {
+      tokenUnset(token);
+      Token[Board[dstR][dstC]][2] = true;
+      // check for a win/was the flag attacked/captured?
+    } else if (Token[Board[dstR][dstC]][1]=='F') {
+      console.log('You captured the flag!')
+      return true; // we're done *** BETTER LOGIC LATER
+      // check for equal rank--both lose
+    } else if (Token[token][1] == Token[Board[dstR][dstC]][1]) {
+      console.log('Equal rank. Both lose')
+      tokenUnset(token);
+      tokenUnset(Board[dstR][dstC]);
+      Board[dstR][dstC] = -1;
+      Board[origin[1]][origin[2]] = -1;
+      // check for attacker win
+    } else if (Token[token][1] < Token[Board[dstR][dstC]][1]) {
+      console.log('Your rank ' + Token[token][1] + " won against rank " + Token[Board[dstR][dstC]][1]);
+      tokenUnset(Board[dstR][dstC]);
+      Board[dstR][dstC] = token;
+      Board[origin[1]][origin[2]] = -1;
+      // check for attacker lose
+    } else if (Token[token][1] > Token[Board[dstR][dstC]][1]) {
+      console.log('Your rank ' + Token[token][1] + " lost to rank " + Token[Board[dstR][dstC]][1]);
+      tokenUnset(token);
+      Board[origin[1]][origin[2]] = -1;
+    }
+  } else {
+    console.log('Move not allowed because ' + result);
+  }
 }
 
-// Display playing field to console.
-function showField() {
+function checkMove(token,dstR,dstC) {
+  var origin = findToken(token);
+  // same square check
+  if ((dstR==origin[0]) && (dstC==origin[1])) return 'destination matches origin'
+  // board boundaries
+  if (dstR < 0) return 'off board top';
+  if (dstR > 9) return 'off board bottom';
+  if (dstC < 0) return 'off board left';
+  if (dstC > 9) return 'off board right';
+  // twin stars
+  if ((dstR > 3) && (dstR < 6) && (dstC > 1) && (dstC < 4)) return 'into left star';
+  if ((dstR > 3) && (dstR < 6) && (dstC > 5) && (dstC < 8)) return 'into right star';
+  // too many spaces
+  rowMove = dstR-origin[0];
+  colMove = dstC-origin[1];
+  // check special case for rank 9, which is allowed to move multiple empty spaces in one direction
+  if (((Math.abs(rowMove)>1 && colMove==0) || (rowMove==0 && Math.abs(colMove<1))) && (Token[token][1]==9)) {
+    if (rowMove>1) {
+      for (var j=origin[1]+1; j<dstC; j++) {
+        if (Board[origin[0],j] != -1) return '+row move is blocked by' + Board[origin[0],j]
+      }
+    } else if (rowMove<-1) {  // other direction
+      for (var j=origin[1]+1; j<dstC; j++) {
+        if (Board[origin[0],j] != -1) return '-row move is blocked by' + Board[origin[0],j]
+      }
+    } else if (colMove>1) {
+      for (var j=origin[1]+1; j<dstC; j++) {
+        if (Board[origin[0],j] != -1) return '+col move is blocked by' + Board[origin[0],j]
+      }
+    } else if (colMove<-1) {
+      for (var j=origin[1]+1; j<dstC; j++) {
+        if (Board[origin[0],j] != -1) return '-col move is blocked by' + Board[origin[0],j]
+    }
+  } else if ((Math.abs(rowMove) + Math.abs(colMove) > 1) || ((Token[token][1]==9) && (Math.abs(rowMove)>0) && (Math.abs(colMove)>0))) {
+      return 'too many spaces';
+    }
+  }
+  // space empty or occupied
+  if (Board[dstR][dstC] == -1) return 'empty';
+  if (Token[Board[dstR][dstC]][0] == Token[token][0]) return 'friendly';
+  if (Token[Board[dstR][dstC]][0] != Token[token][0]) return 'enemy';
+  return 'error'  // if return hasn't happened by now, all tests pass
+} // end function checkMove
+
+// Display playing Board to console.
+function showBoard() {
     for (var i=0; i<10; i++) {
-      console.log(i + ':' + Field[i][0] + ' ' + Field[i][1] + ' '
-                + Field[i][2] + ' ' + Field[i][3] + ' '
-                + Field[i][4] + ' ' + Field[i][5] + ' '
-                + Field[i][6] + ' ' + Field[i][7] + ' '
-                + Field[i][8] + ' ' + Field[i][9]);
+      outString = i + ':' + Board[i][0]
+                if (Board[i][0] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][0]][0] + '-' + Token[Board[i][0]][1] + ' ';
+                outString = outString + Board[i][1] + ' ';
+                if (Board[i][1] != 'X' && Board[i][1] != -1) outString = outString + '-' + Token[Board[i][1]][0] + '-' + Token[Board[i][1]][1] + ' ';
+                outString = outString + Board[i][2];
+                if (Board[i][2] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][2]][0] + '-' + Token[Board[i][2]][1] + ' ';
+                outString = outString + Board[i][3];
+                if (Board[i][3] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][3]][0] + '-' + Token[Board[i][3]][1] + ' ';
+                outString = outString + Board[i][4];
+                if (Board[i][4] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][4]][0] + '-' + Token[Board[i][4]][1] + ' ';
+                outString = outString + Board[i][5];
+                if (Board[i][5] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][5]][0] + '-' + Token[Board[i][5]][1] + ' ';
+                outString = outString + Board[i][6];
+                if (Board[i][6] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][6]][0] + '-' + Token[Board[i][6]][1] + ' ';
+                outString = outString + Board[i][7];
+                if (Board[i][7] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][7]][0] + '-' + Token[Board[i][7]][1] + ' ';
+                outString = outString + Board[i][8];
+                if (Board[i][8] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][8]][0] + '-' + Token[Board[i][8]][1] + ' ';
+                outString = outString + Board[i][9];
+                if (Board[i][9] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][9]][0] + '-' + Token[Board[i][9]][1] + ' ';
+    console.log(outString);
   }
   return true;
 };
@@ -224,7 +336,7 @@ function showTrayF() {
 
 function showAll() {
   showTrayA();
-  showField();
+  showBoard();
   showTrayF();
 }
 
@@ -261,12 +373,12 @@ function getIndexConstrained(arr, r1, r2, k){
     return [];
 }
 
-// Find Warp Attack game token by looking on the field and in both trays
+// Find Warp Attack game token by looking on the Board and in both trays
 // return array name and row and column
 function findToken(k) {
-  var loc = getIndexOfK(Field,k);
+  var loc = getIndexOfK(Board,k);
   if (loc.length==2) {
-    return ['Field',loc[0],loc[1]];
+    return ['Board',loc[0],loc[1]];
   } else {
     loc = getIndexOfK(TrayF,k);
     if (loc.length==2) {
@@ -372,7 +484,7 @@ function setRemaining() {
     for (var j=0; j<10; j++) {
       console.log('TrayA ' + i,j,TrayF[i],[j]);
       if (TrayA[i][j] != -1) {
-        empty = getIndexConstrained(Field,0,3,-1)
+        empty = getIndexConstrained(Board,0,3,-1)
         console.log(empty);
         console.log('A setToken: ' + TrayF[i][j],empty[0],empty[1])
         setToken(TrayA[i][j],empty[0],empty[1]);
@@ -385,7 +497,7 @@ function setRemaining() {
     for (var j=0; j<10; j++) {
       console.log('TrayF ' + i,j,TrayF[i],[j]);
       if (TrayF[i][j] != -1) {
-        empty = getIndexConstrained(Field,6,9,-1)
+        empty = getIndexConstrained(Board,6,9,-1)
         console.log(empty);
         console.log('F setToken: ' + TrayF[i][j],empty[0],empty[1])
         setToken(TrayF[i][j],empty[0],empty[1]);
