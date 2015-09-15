@@ -1,8 +1,12 @@
+// Variables
+@titleFont: 'Share', sans-serif;
+@titleColor: rgb(240,207,61);
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: rgb(100,100,100);
-  // background: url('/images/milky-way-wikipedia-spitzer.jpg');
+  // background-color: rgb(100,100,100);
+  background: url('/images/milky-way-wikipedia-spitzer.jpg');
 }
 
 a {
@@ -17,10 +21,15 @@ a {
 }
 
 h1 {
-  // color: yellow;
+  color: @titleColor;
+  font-family: @titleFont;
+  font-size: 8rem;
+  font-weight: 700;
+  font-style: italic;
+  text-align: center;
 }
 article {
-  // color: yellow;
+  color: rgb(240,207,61);
 }
 
 table {

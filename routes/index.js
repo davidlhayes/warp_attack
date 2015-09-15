@@ -30,27 +30,26 @@ controller.get('/', function(req, res, next) {
   // store the playing Board
   var newRef = new Firebase('https://shining-heat-2898.firebaseio.com/Board');
   newRef.remove();
-  for (var i=0;i<10;i++) {
-    for (var j=0;j<10;j++)
-      setSquare("Board",i,j,"0");
-  }
+  // for (var i=0;i<10;i++) {
+  //   for (var j=0;j<10;j++)
+      // setSquare("Board",i,j,"0");
+  // }
   // store the federation tray with pieces
   var k=0;
-  for (var i=0;i<4;i++) {
-    for (var j=0;j<10;j++) {
-      setSquare("ftray",i,j,k)
+  // for (var i=0;i<4;i++) {
+  //   for (var j=0;j<10;j++) {
+      // setSquare("ftray",i,j,k)
       k++;
-    }
-  }
+    // }
+  // }
   // store the alliance tray with pieces
-  var k=40;
-  for (var i=0;i<4;i++) {
-    for (var j=0;j<10;j++) {
-      setSquare("atray",i,j,k)
-      k++;
-    }
-  }
-
+  // var k=40;
+  // for (var i=0;i<4;i++) {
+  //   for (var j=0;j<10;j++) {
+      // setSquare("atray",i,j,k)
+  //     k++;
+  //   }
+  // }
   res.render('index', { title: 'Warp Attack' });
 });
 // Add a game piece

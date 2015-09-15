@@ -1,5 +1,5 @@
 // namespace and call Angular.js
-var warpApp = angular.module('warpApp', []);
+var warpApp = angular.module('warpApp', ["firebase"]);
 var FURL = "https://shining-heat-2898.firebaseio.com";
 var ref = new Firebase("https://shining-heat-2898.firebaseio.com")
 
@@ -56,11 +56,11 @@ warpApp.controller('UserCtrl', function($scope) {
                       alert('No room for more players');
                     } else {
                         console.log('HEY HEY')
-                      newRef.update({"alliance": playerId});
+                      // newRef.update({"alliance": playerId});
                       // Fleets assigned, add pieces to tray
-                        var aPath = newRef.child('alliance').toString();
-                        var aRef = new Firebase(aPath);
-                        var pRef = new Firebase(aPath + '/pieces');
+                        // var aPath = newRef.child('alliance').toString();
+                        // var aRef = new Firebase(aPath);
+                        // var pRef = new Firebase(aPath + '/pieces');
                         console.log(aPath);
 
                         pRef.update({"40":{"fleet":"a","rank":"1","revealed":false,"url":"/images/starship-a-1.png"},
@@ -106,10 +106,10 @@ warpApp.controller('UserCtrl', function($scope) {
 
                     }
                   } else {
-                      var gamePath = newRef.update({"federation": playerId});
+                      // var gamePath = newRef.update({"federation": playerId});
                       // console.log('Team Path: ' + gamePath.toString());
                       // Fleets assigned, add pieces to tray
-                      newRef.update({"federation": playerId});
+                      // newRef.update({"federation": playerId});
                       // Fleets assigned, add pieces to tray
                         var fPath = newRef.child('federation').toString();
                         var fRef = new Firebase(fPath);
@@ -166,8 +166,8 @@ warpApp.controller('UserCtrl', function($scope) {
 
               newRef = new Firebase(FURL + "/gameBoard");
 
-              var playerRef = newRef.push({"alliance":playerId});
-              var gamePath = playerRef.toString();
+              // var playerRef = newRef.push({"alliance":playerId});
+              // var gamePath = playerRef.toString();
 
             }
 
@@ -178,6 +178,7 @@ warpApp.controller('UserCtrl', function($scope) {
 
           });
           // end game set portion
+          newRef = new Firebase(FURL);
         }
       })}
     $scope.logOutUser = function() {
@@ -198,6 +199,62 @@ warpApp.controller('PlayCtrl', function($scope) {
       }
     }
 });
+var MyList;
+var newObj;
+var MyArray = [];
+
+ref = new Firebase(FURL);
+ref.set({"r0c0":2});
+ref.update({"r1c2":1});
+ref.update({"r1c2":500});
+
+MyList = new Firebase(FURL);
+
+function BuildFirebaseArray() {
+  var myObj = {};
+  for (var i=0;i<9;i++) {
+    for (var j=0;j<9;j++) {
+      var objStr = '{ "r' + i + 'c' + j + '":' + Number(i + j) + '}';
+      console.log(objStr);
+      myObj = JSON.parse(objStr);
+      ref.update(JSON.parse(objStr));
+    }
+  }
+}
+
+MyList.on('value', function(snapshot) {
+  newObj = snapshot.val();
+}, function(errorObject) {
+  console.log("The read failed: " + errorObject.code);
+
+});
+
+function getBoard() {
+
+
+   for (var key in newObj) {
+     MyArray.push(newObj[key]);
+   }
+   console.log(MyArray);
+
+}
+
+
+
+   // remove an item
+  //  list.$remove(2).then(...);
+
+   // make the list available in the DOM
+  //  $scope.list = Mylist;
+
+
+     // To make the data available in the DOM, assign it to $scope
+    //  $scope.data = obj;
+
+     // For three-way data bindings, bind it to the scope instead
+    //  obj.$bindTo($scope, "data");
+  // }
+// ]);
 
 warpApp.controller('WarpCtrl', ['$scope', function($scope) {
   $scope.messages =
