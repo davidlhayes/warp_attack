@@ -82,21 +82,27 @@ var Token = [
           [ 'f' , 'M' , false , '/images/starship-f-mine.png'],
           [ 'f' , 'M' , false , '/images/starship-f-mine.png'],
           [ 'f' , 'M' , false , '/images/starship-f-mine.png'],
-          [ 'f' , 'F' , false , '/images/starship-f-flag.png']
+          [ 'f' , 'F' , false , '/images/starship-f-flag.png'],
+          [ 'o' , 'E' , true  , '/images/empty.png' ],  // an empty square
+          [ 'x' , 'L' , true  , '/images/left-top-star.png' ], // quadrants
+          [ 'x' , 'R' , true  , '/images/right-top-star.png' ], // of
+          [ 'x' , 'V' , true  , '/images/right-bot-star.png'],  // forbidden
+          [ 'x' , 'O' , true  , '/images/left-bot-star.png']  // zones
       ]
 // The initial, empty playing Board.
 var Board = [
-      [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ],
-      [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ],
-      [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ],
-      [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ],
-      [ -1 , -1 , 'X', 'X', -1 , -1 , 'X', 'X', -1 , -1 ],
-      [ -1 , -1 , 'X', 'X', -1 , -1 , 'X', 'X', -1 , -1 ],
-      [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ],
-      [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ],
-      [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ],
-      [ -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 , -1 ]
+      [ 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 ],
+      [ 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 ],
+      [ 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 ],
+      [ 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 ],
+      [ 80 , 80 , 81 , 82 , 80 , 80 , 81 , 82 , 80 , 80 ],
+      [ 80 , 80 , 84 , 83 , 80 , 80 , 84 , 83 , 80 , 80 ],
+      [ 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 ],
+      [ 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 ],
+      [ 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 ],
+      [ 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 , 80 ]
 ];
+
 // the initial home and final resting place for Alliance tokens
 var TrayA = [
       [ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 ],
@@ -111,7 +117,7 @@ var TrayF = [
       [ 60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
       [ 70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
 ]
-
+BuildFirebaseArray();
 
 
 // identify the addresses of the data
@@ -128,11 +134,11 @@ function setToken(token,dstR,dstC) {
     if (tokenOrigin.length==3) {        // valid return array [ 'array', row, col ]
       var originR = tokenOrigin[1];
       var originC = tokenOrigin[2];
-      if (Board[dstR][dstC] == -1) {
+      if ((Board[dstR][dstC] == 80) || (Board[dstR][dstC]>84)) {
         if (tokenOrigin[0] == 'TrayA') {
           if (dstR < 4) {
             Board[dstR][dstC] = TrayA[originR][originC];
-            TrayA[originR][originC] = -1;
+            TrayA[originR][originC] = 80;
             // showAll();
             return true;
           } else {
@@ -142,7 +148,7 @@ function setToken(token,dstR,dstC) {
         } else if (tokenOrigin[0] == 'TrayF') {
           if (dstR > 5) {
             Board[dstR][dstC] = TrayF[originR][originC];
-            TrayF[originR][originC] = -1;
+            TrayF[originR][originC] = 80;
             // showAll();
             return true;
           } else {
@@ -169,18 +175,18 @@ function setToken(token,dstR,dstC) {
 function tokenUnset(token) {
     var orgCell = findToken(token); // 3 element array returned: arrayname, row, col
     if (token < 40) {
-      var openCell = getIndexOfK(TrayA,-1);  // 2 element array: row, col
-      if (TrayA[openCell[0]][openCell[1]] == -1) {
+      var openCell = getIndexOfK(TrayA,80);  // 2 element array: row, col
+      if (TrayA[openCell[0]][openCell[1]] == 80) {
         TrayA[openCell[0]][openCell[1]] = Board[orgCell[1]][orgCell[2]];
-        Board[orgCell[1]][orgCell[2]] = -1;
+        Board[orgCell[1]][orgCell[2]] = 80;
       } else {
         console.log('Error! Tray appears to be full!');
       }
     } else {
-      var openCell =  getIndexOfK(TrayF,-1);
-      if (TrayF[openCell[0]][openCell[1]] == -1) {
+      var openCell =  getIndexOfK(TrayF,80);
+      if (TrayF[openCell[0]][openCell[1]] == 80) {
         TrayF[openCell[0]][openCell[1]] = Board[orgCell[1]][orgCell[2]];
-        Board[orgCell[1]][orgCell[2]] = -1;
+        Board[orgCell[1]][orgCell[2]] = 80;
       } else {
         console.log('Error! Tray appears to be full!');
       }
@@ -195,7 +201,7 @@ function moveToken(token,dstR,dstC) {
   // move if space is available
   if (result=='empty') {
     Board[dstR][dstC] = token;
-    Board[origin[1]][origin[2]] = -1;
+    Board[origin[1]][origin[2]] = 80;
   } else if (result=='enemy') { // battle if space is occupied by an enemy
     // check for suicide case (S beats 1)
     if (Token[token][1]=='S' && Token[Board[dstR][dstC]]=='1') {
@@ -221,19 +227,19 @@ function moveToken(token,dstR,dstC) {
       console.log('Equal rank. Both lose')
       tokenUnset(token);
       tokenUnset(Board[dstR][dstC]);
-      Board[dstR][dstC] = -1;
-      Board[origin[1]][origin[2]] = -1;
+      Board[dstR][dstC] = 80;
+      Board[origin[1]][origin[2]] = 80;
       // check for attacker win
     } else if (Token[token][1] < Token[Board[dstR][dstC]][1]) {
       console.log('Your rank ' + Token[token][1] + " won against rank " + Token[Board[dstR][dstC]][1]);
       tokenUnset(Board[dstR][dstC]);
       Board[dstR][dstC] = token;
-      Board[origin[1]][origin[2]] = -1;
+      Board[origin[1]][origin[2]] = 80;
       // check for attacker lose
     } else if (Token[token][1] > Token[Board[dstR][dstC]][1]) {
       console.log('Your rank ' + Token[token][1] + " lost to rank " + Token[Board[dstR][dstC]][1]);
       tokenUnset(token);
-      Board[origin[1]][origin[2]] = -1;
+      Board[origin[1]][origin[2]] = 80;
     }
   } else {
     console.log('Move not allowed because ' + result);
@@ -259,26 +265,26 @@ function checkMove(token,dstR,dstC) {
   if (((Math.abs(rowMove)>1 && colMove==0) || (rowMove==0 && Math.abs(colMove<1))) && (Token[token][1]==9)) {
     if (rowMove>1) {
       for (var j=origin[1]+1; j<dstC; j++) {
-        if (Board[origin[0],j] != -1) return '+row move is blocked by' + Board[origin[0],j]
+        if (Board[origin[0],j] != 80) return '+row move is blocked by' + Board[origin[0],j]
       }
-    } else if (rowMove<-1) {  // other direction
+    } else if (rowMove<80) {  // other direction
       for (var j=origin[1]+1; j<dstC; j++) {
-        if (Board[origin[0],j] != -1) return '-row move is blocked by' + Board[origin[0],j]
+        if (Board[origin[0],j] != 80) return '-row move is blocked by' + Board[origin[0],j]
       }
     } else if (colMove>1) {
       for (var j=origin[1]+1; j<dstC; j++) {
-        if (Board[origin[0],j] != -1) return '+col move is blocked by' + Board[origin[0],j]
+        if (Board[origin[0],j] != 80) return '+col move is blocked by' + Board[origin[0],j]
       }
-    } else if (colMove<-1) {
+    } else if (colMove<80) {
       for (var j=origin[1]+1; j<dstC; j++) {
-        if (Board[origin[0],j] != -1) return '-col move is blocked by' + Board[origin[0],j]
+        if (Board[origin[0],j] != 80) return '-col move is blocked by' + Board[origin[0],j]
     }
   } else if ((Math.abs(rowMove) + Math.abs(colMove) > 1) || ((Token[token][1]==9) && (Math.abs(rowMove)>0) && (Math.abs(colMove)>0))) {
       return 'too many spaces';
     }
   }
   // space empty or occupied
-  if (Board[dstR][dstC] == -1) return 'empty';
+  if (Board[dstR][dstC] == 80) return 'empty';
   if (Token[Board[dstR][dstC]][0] == Token[token][0]) return 'friendly';
   if (Token[Board[dstR][dstC]][0] != Token[token][0]) return 'enemy';
   return 'error'  // if return hasn't happened by now, all tests pass
@@ -286,27 +292,19 @@ function checkMove(token,dstR,dstC) {
 
 // Display playing Board to console.
 function showBoard() {
+
     for (var i=0; i<10; i++) {
-      outString = i + ':' + Board[i][0]
-                if (Board[i][0] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][0]][0] + '-' + Token[Board[i][0]][1] + ' ';
-                outString = outString + Board[i][1] + ' ';
-                if (Board[i][1] != 'X' && Board[i][1] != -1) outString = outString + '-' + Token[Board[i][1]][0] + '-' + Token[Board[i][1]][1] + ' ';
-                outString = outString + Board[i][2];
-                if (Board[i][2] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][2]][0] + '-' + Token[Board[i][2]][1] + ' ';
-                outString = outString + Board[i][3];
-                if (Board[i][3] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][3]][0] + '-' + Token[Board[i][3]][1] + ' ';
-                outString = outString + Board[i][4];
-                if (Board[i][4] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][4]][0] + '-' + Token[Board[i][4]][1] + ' ';
-                outString = outString + Board[i][5];
-                if (Board[i][5] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][5]][0] + '-' + Token[Board[i][5]][1] + ' ';
-                outString = outString + Board[i][6];
-                if (Board[i][6] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][6]][0] + '-' + Token[Board[i][6]][1] + ' ';
-                outString = outString + Board[i][7];
-                if (Board[i][7] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][7]][0] + '-' + Token[Board[i][7]][1] + ' ';
-                outString = outString + Board[i][8];
-                if (Board[i][8] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][8]][0] + '-' + Token[Board[i][8]][1] + ' ';
-                outString = outString + Board[i][9];
-                if (Board[i][9] != 'X' && Board[i][0] != -1) outString = outString + '-' + Token[Board[i][9]][0] + '-' + Token[Board[i][9]][1] + ' ';
+      outString = i + ':' + Board[i][0] + '-' + Token[Board[i][0]][0] + '-' + Token[Board[i][0]][1] + '  '
+                + Board[i][1] + '-' + Token[Board[i][1]][0] + '-' + Token[Board[i][1]][1] + '  '
+                + Board[i][2] + '-' + Token[Board[i][2]][0] + '-' + Token[Board[i][2]][1] + '  '
+                + Board[i][3] + '-' + Token[Board[i][3]][0] + '-' + Token[Board[i][3]][1] + '  '
+                + Board[i][4] + '-' + Token[Board[i][4]][0] + '-' + Token[Board[i][4]][1] + '  '
+                + Board[i][5] + '-' + Token[Board[i][5]][0] + '-' + Token[Board[i][5]][1] + '  '
+                + Board[i][6] + '-' + Token[Board[i][6]][0] + '-' + Token[Board[i][6]][1] + '  '
+                + Board[i][7] + '-' + Token[Board[i][7]][0] + '-' + Token[Board[i][7]][1] + '  '
+                + Board[i][8] + '-' + Token[Board[i][8]][0] + '-' + Token[Board[i][8]][1] + '  '
+                + Board[i][9] + '-' + Token[Board[i][9]][0] + '-' + Token[Board[i][9]][1];
+
     console.log(outString);
   }
   return true;
@@ -393,6 +391,11 @@ function findToken(k) {
 }
 
 function setBoard() {
+  // for (var i= 0; i<9; i++) {
+  //   for (var j=0; j<9; j++) {
+  //     setToken(i,j,80);
+  //   }
+  // }
 // Alliance
   setToken(0,0,4);      // rank 1
   setToken(1,1,9);      // rank 2
@@ -482,11 +485,14 @@ function setRemaining() {
   var empty = [];
   for (var i=0; i<4; i++) {
     for (var j=0; j<10; j++) {
-      console.log('TrayA ' + i,j,TrayF[i],[j]);
-      if (TrayA[i][j] != -1) {
-        empty = getIndexConstrained(Board,0,3,-1)
+      console.log('TrayA ' + i,j,TrayA[i][j]);
+      if (TrayA[i][j] != 80) {
+        empty = getIndexConstrained(Board,0,3,80)
         console.log(empty);
-        console.log('A setToken: ' + TrayF[i][j],empty[0],empty[1])
+        if (empty.length < 3) {
+          console.log('HEY');
+        }
+        console.log('A setToken: ' + TrayA[i][j],empty[0],empty[1])
         setToken(TrayA[i][j],empty[0],empty[1]);
       }
     }
@@ -496,8 +502,8 @@ function setRemaining() {
   for (var i=0; i<4; i++) {
     for (var j=0; j<10; j++) {
       console.log('TrayF ' + i,j,TrayF[i],[j]);
-      if (TrayF[i][j] != -1) {
-        empty = getIndexConstrained(Board,6,9,-1)
+      if (TrayF[i][j] != 80) {
+        empty = getIndexConstrained(Board,6,9,80)
         console.log(empty);
         console.log('F setToken: ' + TrayF[i][j],empty[0],empty[1])
         setToken(TrayF[i][j],empty[0],empty[1]);

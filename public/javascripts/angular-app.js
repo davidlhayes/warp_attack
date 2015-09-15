@@ -199,43 +199,58 @@ warpApp.controller('PlayCtrl', function($scope) {
       }
     }
 });
+
+// Talk to Firebase
 var MyList;
 var newObj;
 var MyArray = [];
 
 ref = new Firebase(FURL);
-ref.set({"r0c0":2});
-ref.update({"r1c2":1});
-ref.update({"r1c2":500});
+refTurn = new Firebase(FURL + '\\turn');
+refTurn.update({"turn":"a"})
+
+
 
 MyList = new Firebase(FURL);
 
+// Set Firebase Array equal to local Board
+
 function BuildFirebaseArray() {
   var myObj = {};
-  for (var i=0;i<9;i++) {
-    for (var j=0;j<9;j++) {
-      var objStr = '{ "r' + i + 'c' + j + '":' + Number(i + j) + '}';
+  for (var i=0;i<10;i++) {
+    for (var j=0;j<10;j++) {
+      var objStr = '{ "r' + i + 'c' + j + '":' + Board[i][j] + '}';
       console.log(objStr);
       myObj = JSON.parse(objStr);
       ref.update(JSON.parse(objStr));
     }
   }
 }
-
-MyList.on('value', function(snapshot) {
+// the following function listens for the turn attribute to change on Firebase
+// On that signal, the local board is wiped and synced to Firebase
+refTurn.on('value', function(snapshot) {
   newObj = snapshot.val();
+  Turn = newObj['turn'];
+  for (var key in newObj) {
+    if (key[0]=='r' && key[2]=='c') {      // parse data 'name' of format: r0c1
+      Board[key[1]][key[3]] = newObj[key];
+    }
+  }
 }, function(errorObject) {
   console.log("The read failed: " + errorObject.code);
 
 });
 
+
+
+
 function getBoard() {
 
 
    for (var key in newObj) {
-     MyArray.push(newObj[key]);
+     Board.push(newObj[key]);
    }
-   console.log(MyArray);
+   console.log(Board);
 
 }
 
@@ -294,7 +309,7 @@ warpApp.controller('WarpCtrl', ['$scope', function($scope) {
 // 9-12 Using the hard-coded results of this object. Inserting it into the
 // Firebase update command as a variable throws an error and I need to move on.
 
-function pieces(playerId,fleet) {
+function tokens(playerId,fleet) {
   // define piece rank and number of pieces per rank
   var rank = ['1','2','3','4','5','6','7','8','9','suicide','mine','flag'];
   var dist = [ 1 , 1 , 2 , 3 , 4 , 4 , 4 , 5 , 8 ,    1    ,   6  ,   1  ];
