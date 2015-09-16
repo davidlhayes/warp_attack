@@ -1,8 +1,7 @@
 // namespace and call Angular.js
 var warpApp = angular.module('warpApp', ["firebase"]);
 var FURL = "https://shining-heat-2898.firebaseio.com";
-var ref = new Firebase("https://shining-heat-2898.firebaseio.com");
-var msgRef = new Firebase("https://shining-heat-2898.firebaseio.com/messages");
+var ref = new Firebase("https://shining-heat-2898.firebaseio.com")
 
 // the code below is said to be needed for handlebars to work
 warpApp.config(['$interpolateProvider', function($interpolateProvider) {
@@ -39,7 +38,6 @@ warpApp.controller('UserCtrl', function($scope) {
           // hook this user up with a partner or let them choose a side
           var gameBoard = new Firebase(FURL + "/gameBoard");
           var playerId = authData.uid;
-          messageBox(playerId,'clear');
           // gameBoard.remove();
           gameBoard.once('value', function(dataSnapshot) {
             if (dataSnapshot.exists()) {
@@ -225,7 +223,7 @@ function BuildFirebaseArray() {
   for (var i=0;i<10;i++) {
     for (var j=0;j<10;j++) {
       var objStr = '{ "r' + i + 'c' + j + '":' + Board[i][j] + '}';
-      // console.log(objStr);
+      console.log(objStr);
       myObj = JSON.parse(objStr);
       ref.update(JSON.parse(objStr));
     }
@@ -276,41 +274,44 @@ function getBoard() {
   // }
 // ]);
 
-warpApp.controller('WarpCtrl', ['$scope', function($scope) {
+// warpApp.controller('WarpCtrl', ['$scope', function($scope) {
 //
+//     $scope.row9Cell2 = Token[Board[9][2]][3];
+//
+//     $scope.row1Cell8 = Token[Board[1][8]][3];
 
-  $scope.messages =
-    [
-      {
-        // user: 'Tom',
-        // date: new Date('2015', '09', '09'),
-        // image: 'http://www.cardinalsushi.com/images/soda.jpg',
-        text: 'Backbone stinks!'
-        // likes: 0
-      },
-      {
-        // user: 'James',
-        // date: new Date('2015', '09', '09'),
-        // image: 'http://www.vetprofessionals.com/catprofessional/images/home-cat.jpg',
-        text: 'Tom stinks! React+Backbone for life!'
-        // likes: 0
-      },
-      {
-        // user: 'Tristan',
-        // date: new Date('2015', '09', '09'),
-        // image: 'http://toytrucktoys.com/wp-content/uploads/2010/12/american-plastic-toy.jpg',
-        text: 'Nah!'
-        // likes: 0
-      }
-    ]
-    // $scope.plusLike = function(index) {
-    //   $scope.messages[index].likes += 1;
-    // };
-    // $scope.minusLike = function(index) {
-    //   $scope.messages[index].likes -= 1;
-    // };
-  }]
-);
+  // $scope.messages =
+//     [
+//       {
+//         user: 'Tom',
+//         date: new Date('2015', '09', '09'),
+//         image: 'http://www.cardinalsushi.com/images/soda.jpg',
+//         text: 'Backbone stinks!',
+//         likes: 0
+//       },
+//       {
+//         user: 'James',
+//         date: new Date('2015', '09', '09'),
+//         image: 'http://www.vetprofessionals.com/catprofessional/images/home-cat.jpg',
+//         text: 'Tom stinks! React+Backbone for life!',
+//         likes: 0
+//       },
+//       {
+//         user: 'Tristan',
+//         date: new Date('2015', '09', '09'),
+//         image: 'http://toytrucktoys.com/wp-content/uploads/2010/12/american-plastic-toy.jpg',
+//         text: 'Nah!',
+//         likes: 0
+//       }
+//     ],
+//     $scope.plusLike = function(index) {
+//       $scope.messages[index].likes += 1;
+//     };
+//     $scope.minusLike = function(index) {
+//       $scope.messages[index].likes -= 1;
+//     };
+//   }]
+// );
 
 // Generate all the pieces needed.
 // 9-12 Using the hard-coded results of this object. Inserting it into the
@@ -376,21 +377,3 @@ function tokens(playerId,fleet) {
 //   var refToSameLocation = query.ref();
 //   console.log(refToSameLocation);
 // }
-
-function messageBox(sender,message) {
-  // figure out fleet and set color
-  if (message == 'clear') {
-    msgRef.remove();
-  } else {
-    if (fleet=='a') {
-      html = "<p class='alliance'>" + message + "</p>";
-    } else if (fleet='f') {
-      html = "<p class='alliance'>" + message + "</p>";
-    } else if (fleet='s') {
-      html = "<p class='system'>" + message + "</p>";
-    } else if (fleet='o') {
-      html = "<p class='utility'>" + message + "</p>";
-    }
-    msgRef.push(html);
-  }
-}

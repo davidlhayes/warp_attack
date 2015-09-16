@@ -3,12 +3,17 @@
 @titleColor: rgb(240,207,61);
 @alliance_red: rgb(159, 50, 50);
 @federation_blue: rgb(59, 26, 191);
+@boardGridColor: rgb(0,255,245);
+@messageFont: 'Courier', sans-serif;
+@messageFontSize: 10px;
 
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   // background-color: rgb(100,100,100);
-  background: url('/images/milky-way-wikipedia-spitzer.jpg');
+  background: url('/assets/images/hubble-space-wallpapers.jpg');
+  background-size: cover;
+
 }
 
 a {
@@ -21,26 +26,8 @@ a {
   background-color: green;
   font-size: 100px;
 }
-.federation {
-  color: @federation_blue;
-}
-.alliance {
-  color: @alliance_red;
-}
-.token {
-  width: 40px;
-  height: 50px;
-  text-align: right;
-  padding-right: 3px;
-  // border: solid 1px white;
-  border-radius: 5px;
-  background-color: rgba(255,255,255,.3);
-  img {
-    margin-right: 3px;
-    margin-bottom: 8px;
-    width: 40px;
-  }
-}
+
+
 
 h1 {
   color: @titleColor;
@@ -54,16 +41,81 @@ article {
   color: rgb(240,207,61);
 }
 
-table {
+table#main  {
   margin: 0 auto;
+
   border-collapse: collapse;
   background-color: rgba(255,255,255,.0) !important;
   tr {
     background-color: rgba(255,255,255,.0) !important;
   }
   th, td {
-    border: 1px solid rgb(0,255,245);
+    border: 1px solid @boardGridColor;
   }
+  img {
+    width: 45px;
+    border-radius: 10px;
+  }
+  td {
+    padding: 0;
+    width: 45px;
+    height: 60px;
+  }
+  td:hover {
+    background-color: @titleColor;
+  }
+}
+.star {
+  width: 90px !important;
+}
+.token {
+  background-color: rgba(255,255,255,.6);
+
+}
+.toMove {
+  background-color: @boardGridColor;
+}
+.toLandOn {
+
+}
+
+
+table#tray  {
+  margin: 0 auto;
+
+    border-collapse: collapse;
+    background-color: rgba(255,255,255,.0) !important;
+    tr {
+      background-color: rgba(255,255,255,.0) !important;
+    }
+    th, td {
+      border: 1px solid @titleColor;
+    }
+    img {
+      width: 45px;
+    }
+    td {
+      padding: 0;
+      width: 45px;
+      height: 60px;
+    }
+
+
+}
+
+#chat {
+  margin: 0 auto;
+  width: 181px;
+  height: 600px;
+  li {
+    font-size: .7rem;
+    line-height: .8rem;
+  }
+
+  color: green;
+  font-family: @messageFont;
+  border: solid 1px @titleColor;
+  background-color: black;
 }
 
 // #warpattack {

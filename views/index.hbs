@@ -25,353 +25,216 @@
   <div ng-controller="PlayCtrl">
       <button ng-click="authDataCallback()">Wanna see a secret word?</button>
   </div>
-  <div ng-controller="WarpCtrl">
+
+</div> <!-- end warpApp app -->
 
 
-    <!-- <article ng-repeat="message in messages">
-      Animal: <h3> {[{board }]} </h3>
-      UserName: <h3> {[{message.user}]} </h3>
-      Date: <h3> {[{message.date | date}]}
-      Message: <h3> {[{ message.text }]} </h3>
-      <img ng-src=" {[{ message.image }]} "><br>
-      Likes: <h5> {[{message.likes}]} </h5>ß
-      <p ng-click='plusLike($index)'><button type="button"
-        name="button">Like</button></p>
-      <p ng-click='minusLike($index)'><button type="button"
-        name="button">Dislike</button></p>
+<div class="row"> <!-- main app in a row -->
 
-      </p>
-      <hr>
-    </article> -->
-
-
-
-
-  <table id='warpattack'>
-    <tr>
-      <td>
-    <div class="token alliance">{[{row9Cell2r}]}<img "width=30px" ng-src="{[{row9Cell2}]}"></div>
-      </td>
-      <td>
-    <div class="token federation">{[{row1Cell8r}]}<img ng-src="{[{row1Cell8}]}"></div>
-      </td>
-      <td>
-        <div class="square" id="r0c2">2</div>
-      </td>
-      <td>
-        <div class="square" id="r0c2">3</div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square" ></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-      <td>
-        <div class="square"></div>
-      </td>
-    </tr>
-  </table>
-  <ul id='add'></ul>
+  <div class="large-3 columns">   <!-- tray column -->
+    <table id="tray">
+      <tr>
+        <td id="tray-r0c0"></td>
+        <td id="tray-r0c0"></td>
+        <td id="tray-r0c0"></td>
+        <td id="tray-r0c0"></td>
+      </tr>
+      <tr>
+        <td id="tray-r1c0"></td>
+        <td id="tray-r1c0"></td>
+        <td id="tray-r1c0"></td>
+        <td id="tray-r1c0"></td>
+      </tr>
+      <tr>
+        <td id="tray-r2c0"></td>
+        <td id="tray-r2c0"></td>
+        <td id="tray-r2c0"></td>
+        <td id="tray-r2c0"></td>
+      </tr>
+      <tr>
+        <td id="tray-r3c0"></td>
+        <td id="tray-r3c0"></td>
+        <td id="tray-r3c0"></td>
+        <td id="tray-r3c0"></td>
+      </tr>
+      <tr>
+        <td id="tray-r4c0"></td>
+        <td id="tray-r4c0"></td>
+        <td id="tray-r4c0"></td>
+        <td id="tray-r4c0"></td>
+      </tr>
+      <tr>
+        <td id="tray-r5c0"></td>
+        <td id="tray-r5c0"></td>
+        <td id="tray-r5c0"></td>
+        <td id="tray-r5c0"></td>
+      </tr>
+      <tr>
+        <td id="tray-r6c0"></td>
+        <td id="tray-r6c0"></td>
+        <td id="tray-r6c0"></td>
+        <td id="tray-r6c0"></td>
+      </tr>
+      <tr>
+        <td id="tray-r7c0"></td>
+        <td id="tray-r7c0"></td>
+        <td id="tray-r7c0"></td>
+        <td id="tray-r7c0"></td>
+      </tr>
+      <tr>
+        <td id="tray-r8c0"></td>
+        <td id="tray-r8c0"></td>
+        <td id="tray-r8c0"></td>
+        <td id="tray-r8c0"></td>
+      </tr>
+      <tr>
+        <td id="tray-r9c0"></td>
+        <td id="tray-r9c0"></td>
+        <td id="tray-r9c0"></td>
+        <td id="tray-r9c0"></td>
+      </tr>
+    </table>
   </div>
-</div>
+
+  <div class="large-6 columns"> <!-- main board -->
+    <table id='main'>
+      <tr>
+        <td id="main-r0c0"></td>
+        <td id="main-r0c1"></td>
+        <td id="main-r0c2"></td>
+        <td id="main-r0c3"></td>
+        <td id="main-r0c4"></td>
+        <td id="main-r0c5"></td>
+        <td id="main-r0c6"></td>
+        <td id="main-r0c7"></td>
+        <td id="main-r0c8"></td>
+        <td id="main-r0c9"></td>
+      </tr>
+      <tr>
+        <td id="main-r1c0"></td>
+        <td id="main-r1c1"></td>
+        <td id="main-r1c2"></td>
+        <td id="main-r1c3"></td>
+        <td id="main-r1c4"></td>
+        <td id="main-r1c5"></td>
+        <td id="main-r1c6"></td>
+        <td id="main-r1c7"></td>
+        <td id="main-r1c8"></td>
+        <td id="main-r1c9"></td>
+      </tr>
+      <tr>
+        <td id="main-r2c0"></td>
+        <td id="main-r2c1"></td>
+        <td id="main-r2c2"></td>
+        <td id="main-r2c3"></td>
+        <td id="main-r2c4"></td>
+        <td id="main-r2c5"></td>
+        <td id="main-r2c6"></td>
+        <td id="main-r2c7"></td>
+        <td id="main-r2c8"></td>
+        <td id="main-r2c9"></td>
+      </tr>
+      <tr>
+        <td id="main-r3c0"></td>
+        <td id="main-r3c1"></td>
+        <td id="main-r3c2"></td>
+        <td id="main-r3c3"></td>
+        <td id="main-r3c4"></td>
+        <td id="main-r3c5"></td>
+        <td id="main-r3c6"></td>
+        <td id="main-r3c7"></td>
+        <td id="main-r3c8"></td>
+        <td id="main-r3c9"></td>
+      </tr>
+      <tr>
+        <td id="main-r4c0"></td>
+        <td id="main-r4c1"></td>
+        <td id="main-r4c2" colspan="2" rowspan="2"><img class='star' src='/assets/images/star.png'></td>
+        <!-- star continued -->
+        <td id="main-r4c4"></td>
+        <td id="main-r4c5"></td>
+        <td id="main-r4c6" colspan="2" rowspan="2"><img class='star' src='/assets/images/star.png'></td>
+        <!-- star continued -->
+        <td id="main-r4c8"></td>
+        <td id="main-r4c9"></td>
+      </tr>
+      <tr>
+        <td id="main-r5c0"></td>
+        <td id="main-r5c1"></td>
+        <!-- star continued -->
+        <!-- star continued -->
+        <td id="main-r5c4"></td>
+        <td id="main-r5c5"></td>
+        <!-- star continued -->
+        <!-- star continued -->
+        <td id="main-r5c8"></td>
+        <td id="main-r5c9"></td>
+      </tr>
+      <tr>
+        <td id="main-r6c0"></td>
+        <td id="main-r6c1"></td>
+        <td id="main-r6c2"></td>
+        <td id="main-r6c3"></td>
+        <td id="main-r6c4"></td>
+        <td id="main-r6c5"></td>
+        <td id="main-r6c6"></td>
+        <td id="main-r6c7"></td>
+        <td id="main-r6c8"></td>
+        <td id="main-r6c9"></td>
+      </tr>
+      <tr>
+        <td id="main-r7c0"></td>
+        <td id="main-r7c1"></td>
+        <td id="main-r7c2"></td>
+        <td id="main-r7c3"></td>
+        <td id="main-r7c4"></td>
+        <td id="main-r7c5"></td>
+        <td id="main-r7c6"></td>
+        <td id="main-r7c7"></td>
+        <td id="main-r7c8"></td>
+        <td id="main-r7c9"></td>
+      </tr>
+      <tr>
+        <td id="main-r8c0"></td>
+        <td id="main-r8c1"></td>
+        <td id="main-r8c2"></td>
+        <td id="main-r8c3"></td>
+        <td id="main-r8c4"></td>
+        <td id="main-r8c5"></td>
+        <td id="main-r8c6"></td>
+        <td id="main-r8c7"></td>
+        <td id="main-r8c8"></td>
+        <td id="main-r8c9"></td>
+      </tr>
+      <tr>
+        <td id="main-r9c0"></td>
+        <td id="main-r9c1"></td>
+        <td id="main-r9c2"></td>
+        <td id="main-r9c3"></td>
+        <td id="main-r9c4"></td>
+        <td id="main-r9c5"></td>
+        <td id="main-r9c6"></td>
+        <td id="main-r9c7"></td>
+        <td id="main-r9c8"></td>
+        <td id="main-r9c9"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="large-3 columns">
+    <div id="chat">
+      <div ng-controller="WarpCtrl">
+
+        <ul ng-repeat="message in messages">
+          <li>{[{ message.text }]}</li>
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+
+</div> <-- end row with boards -->
 <script>
 var fbref = new Firebase("https://shining-heat-2898.firebaseio.com/Board/square");
     $(document).foundation();

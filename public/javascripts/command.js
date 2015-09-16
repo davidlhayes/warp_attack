@@ -84,10 +84,10 @@ var Token = [
           [ 'f' , 'M' , false , '/assets/images/starship-f-mine.png'],
           [ 'f' , 'F' , false , '/assets/images/starship-f-flag.png'],
           [ 'o' , 'E' , true  , '/assets/images/empty.png' ],  // an empty square
-          [ 'x' , 'L' , true  , '/assets/images/left-top-star.png' ], // quadrants
-          [ 'x' , 'R' , true  , '/assets/images/right-top-star.png' ], // of
-          [ 'x' , 'V' , true  , '/assets/images/right-bot-star.png'],  // forbidden
-          [ 'x' , 'O' , true  , '/assets/images/left-bot-star.png']  // zones
+          [ 'x' , 'X' , true  , '/assets/images/left-top-star.png' ], // quadrants
+          [ 'x' , 'X' , true  , '/assets/images/right-top-star.png' ], // of
+          [ 'x' , 'X' , true  , '/assets/images/right-bot-star.png'],  // forbidden
+          [ 'x' , 'X' , true  , '/assets/images/left-bot-star.png']  // zones
       ]
 // The initial, empty playing Board.
 var Board = [
@@ -199,53 +199,69 @@ function tokenUnset(token) {
 
 function moveToken(token,dstR,dstC) {
   var origin = findToken(token);  // 3-element array: arrayname, row, col
-  var result = checkMove(token,dstR,dstC);
+  var target = checkMove(token,dstR,dstC);
+  var result = '';
   // move if space is available
-  if (result=='empty') {
+  if (target=='empty') {
     Board[dstR][dstC] = token;
     Board[origin[1]][origin[2]] = 80;
-  } else if (result=='enemy') { // battle if space is occupied by an enemy
+    result = 'moved';
+  } else if (target=='enemy') { // battle if space is occupied by an enemy
     // check for suicide case (S beats 1)
     if (Token[token][1]=='S' && Token[Board[dstR][dstC]]=='1') {
       //the mover takes the attacked space;
       Board[dstR][dstC] = token;
       // find a tray space for the loser
       tokenUnset(Board[dstR][dstC]);
+      tokenUnset(token);
+      reuslt = 'suicide';
     } else if (Token[token][1]=='1' && Token[Board[dstR][dstC]]=='S')  {
-      // mover is the loser
-      tokenUnset(token);
-      // reveal the victor for the rest of the game
-      Token[Board[dstR][dstC]][2] = true;
-      // special case where attacked square is a mine, but token is not rank 8 (minesweeper)
-    } else if ((Token[Board[dstR][dstC]]=='M') && (Token[token][8] != 8)) {
-      tokenUnset(token);
-      Token[Board[dstR][dstC]][2] = true;
-      // check for a win/was the flag attacked/captured?
+        // mover is the loser
+        tokenUnset(token);
+        // reveal the victor for the rest of the game
+        tokenUnset(Board[dstR][dstC]);
+        reuslt = 'suicide';
+        // special case where attacked square is a mine, but token is not rank 8 (minesweeper)
+    } else if (Token[Board[dstR][dstC]]=='M') {
+        if (Token[token][2]=='8') {
+          result = 'mine disarmed';
+        } else {
+          result = 'blown up';
+          tokenUnset(token);
+          tokenUnset(Board[dstR][dstC]);
+        }
+        // check for a win/was the flag attacked/captured?
     } else if (Token[Board[dstR][dstC]][1]=='F') {
-      console.log('You captured the flag!')
-      return true; // we're done *** BETTER LOGIC LATER
-      // check for equal rank--both lose
+        result = 'win';
+        // check for equal rank--both lose
     } else if (Token[token][1] == Token[Board[dstR][dstC]][1]) {
-      console.log('Equal rank. Both lose')
-      tokenUnset(token);
-      tokenUnset(Board[dstR][dstC]);
-      Board[dstR][dstC] = 80;
-      Board[origin[1]][origin[2]] = 80;
+        result = 'double loss';
+        tokenUnset(token);
+        tokenUnset(Board[dstR][dstC]);
       // check for attacker win
     } else if (Token[token][1] < Token[Board[dstR][dstC]][1]) {
-      console.log('Your rank ' + Token[token][1] + " won against rank " + Token[Board[dstR][dstC]][1]);
-      tokenUnset(Board[dstR][dstC]);
-      Board[dstR][dstC] = token;
-      Board[origin[1]][origin[2]] = 80;
+        result = 'mover wins';
+        tokenUnset(Board[dstR][dstC]);
+        Board[dstR][dstC] = token;
+        Board[origin[1]][origin[2]] = 80;
       // check for attacker lose
     } else if (Token[token][1] > Token[Board[dstR][dstC]][1]) {
-      console.log('Your rank ' + Token[token][1] + " lost to rank " + Token[Board[dstR][dstC]][1]);
-      tokenUnset(token);
-      Board[origin[1]][origin[2]] = 80;
+        result = 'mover loses';
+        tokenUnset(token);
+        Board[origin[1]][origin[2]] = 80;
     }
   } else {
-    console.log('Move not allowed because ' + result);
+      result = 'Move not allowed because ' + target;
+      processResult(result);
   }
+// Process result
+
+
+
+
+
+
+
 }
 
 function checkMove(token,dstR,dstC) {
@@ -480,7 +496,7 @@ function setBoard() {
   setToken(77,6,1);     // mine
   setToken(78,9,1);     // mine
   setToken(79,9,5);     // flag
-  BuildFirebaseArray();
+  // BuildFirebaseArray();
 }
 
 // The above is scattershot. Need to place tokens that were poorly commanded
@@ -514,6 +530,6 @@ function setRemaining() {
     }
   }
 
-  BuildFirebaseArray();
+  // BuildFirebaseArray();
 
 }
