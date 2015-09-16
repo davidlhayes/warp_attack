@@ -3,91 +3,91 @@
 // This is the directory of token attributes
 //         fleet rank  revealed?       image location
 var Token = [
-          [ 'a' , '1' , false , '/images/starship-a-1.png'],
-          [ 'a' , '2' , false , '/images/starship-a-2.png'],
-          [ 'a' , '3' , false , '/images/starship-a-3.png'],
-          [ 'a' , '3' , false , '/images/starship-a-3.png'],
-          [ 'a' , '4' , false , '/images/starship-a-4.png'],
-          [ 'a' , '4' , false , '/images/starship-a-4.png'],
-          [ 'a' , '4' , false , '/images/starship-a-4.png'],
-          [ 'a' , '5' , false , '/images/starship-a-5.png'],
-          [ 'a' , '5' , false , '/images/starship-a-5.png'],
-          [ 'a' , '5' , false , '/images/starship-a-5.png'],
-          [ 'a' , '5' , false , '/images/starship-a-5.png'],
-          [ 'a' , '6' , false , '/images/starship-a-6.png'],
-          [ 'a' , '6' , false , '/images/starship-a-6.png'],
-          [ 'a' , '6' , false , '/images/starship-a-6.png'],
-          [ 'a' , '6' , false , '/images/starship-a-6.png'],
-          [ 'a' , '7' , false , '/images/starship-a-7.png'],
-          [ 'a' , '7' , false , '/images/starship-a-7.png'],
-          [ 'a' , '7' , false , '/images/starship-a-7.png'],
-          [ 'a' , '7' , false , '/images/starship-a-7.png'],
-          [ 'a' , '8' , false , '/images/starship-a-8.png'],
-          [ 'a' , '8' , false , '/images/starship-a-8.png'],
-          [ 'a' , '8' , false , '/images/starship-a-8.png'],
-          [ 'a' , '8' , false , '/images/starship-a-8.png'],
-          [ 'a' , '8' , false , '/images/starship-a-8.png'],
-          [ 'a' , '9' , false , '/images/starship-a-9.png'],
-          [ 'a' , '9' , false , '/images/starship-a-9.png'],
-          [ 'a' , '9' , false , '/images/starship-a-9.png'],
-          [ 'a' , '9' , false , '/images/starship-a-9.png'],
-          [ 'a' , '9' , false , '/images/starship-a-9.png'],
-          [ 'a' , '9' , false , '/images/starship-a-9.png'],
-          [ 'a' , '9' , false , '/images/starship-a-9.png'],
-          [ 'a' , '9' , false , '/images/starship-a-9.png'],
-          [ 'a' , 'S' , false , '/images/starship-a-suicide.png'],
-          [ 'a' , 'M' , false , '/images/starship-a-mine.png'],
-          [ 'a' , 'M' , false , '/images/starship-a-mine.png'],
-          [ 'a' , 'M' , false , '/images/starship-a-mine.png'],
-          [ 'a' , 'M' , false , '/images/starship-a-mine.png'],
-          [ 'a' , 'M' , false , '/images/starship-a-mine.png'],
-          [ 'a' , 'M' , false , '/images/starship-a-mine.png'],
-          [ 'a' , 'F' , false , '/images/starship-a-flag.png'],
-          [ 'f' , '1' , false , '/images/starship-f-1.png'],
-          [ 'f' , '2' , false , '/images/starship-f-2.png'],
-          [ 'f' , '3' , false , '/images/starship-f-3.png'],
-          [ 'f' , '3' , false , '/images/starship-f-3.png'],
-          [ 'f' , '4' , false , '/images/starship-f-4.png'],
-          [ 'f' , '4' , false , '/images/starship-f-4.png'],
-          [ 'f' , '4' , false , '/images/starship-f-4.png'],
-          [ 'f' , '5' , false , '/images/starship-f-5.png'],
-          [ 'f' , '5' , false , '/images/starship-f-5.png'],
-          [ 'f' , '5' , false , '/images/starship-f-5.png'],
-          [ 'f' , '5' , false , '/images/starship-f-5.png'],
-          [ 'f' , '6' , false , '/images/starship-f-6.png'],
-          [ 'f' , '6' , false , '/images/starship-f-6.png'],
-          [ 'f' , '6' , false , '/images/starship-f-6.png'],
-          [ 'f' , '6' , false , '/images/starship-f-6.png'],
-          [ 'f' , '7' , false , '/images/starship-f-7.png'],
-          [ 'f' , '7' , false , '/images/starship-f-7.png'],
-          [ 'f' , '7' , false , '/images/starship-f-7.png'],
-          [ 'f' , '7' , false , '/images/starship-f-7.png'],
-          [ 'f' , '8' , false , '/images/starship-f-8.png'],
-          [ 'f' , '8' , false , '/images/starship-f-8.png'],
-          [ 'f' , '8' , false , '/images/starship-f-8.png'],
-          [ 'f' , '8' , false , '/images/starship-f-8.png'],
-          [ 'f' , '8' , false , '/images/starship-f-8.png'],
-          [ 'f' , '9' , false , '/images/starship-f-9.png'],
-          [ 'f' , '9' , false , '/images/starship-f-9.png'],
-          [ 'f' , '9' , false , '/images/starship-f-9.png'],
-          [ 'f' , '9' , false , '/images/starship-f-9.png'],
-          [ 'f' , '9' , false , '/images/starship-f-9.png'],
-          [ 'f' , '9' , false , '/images/starship-f-9.png'],
-          [ 'f' , '9' , false , '/images/starship-f-9.png'],
-          [ 'f' , '9' , false , '/images/starship-f-9.png'],
-          [ 'f' , 'S' , false , '/images/starship-f-suicide.png'],
-          [ 'f' , 'M' , false , '/images/starship-f-mine.png'],
-          [ 'f' , 'M' , false , '/images/starship-f-mine.png'],
-          [ 'f' , 'M' , false , '/images/starship-f-mine.png'],
-          [ 'f' , 'M' , false , '/images/starship-f-mine.png'],
-          [ 'f' , 'M' , false , '/images/starship-f-mine.png'],
-          [ 'f' , 'M' , false , '/images/starship-f-mine.png'],
-          [ 'f' , 'F' , false , '/images/starship-f-flag.png'],
-          [ 'o' , 'E' , true  , '/images/empty.png' ],  // an empty square
-          [ 'x' , 'L' , true  , '/images/left-top-star.png' ], // quadrants
-          [ 'x' , 'R' , true  , '/images/right-top-star.png' ], // of
-          [ 'x' , 'V' , true  , '/images/right-bot-star.png'],  // forbidden
-          [ 'x' , 'O' , true  , '/images/left-bot-star.png']  // zones
+          [ 'a' , '1' , false , '/assets/images/starship-a-1.png'],
+          [ 'a' , '2' , false , '/assets/images/starship-a-2.png'],
+          [ 'a' , '3' , false , '/assets/images/starship-a-3.png'],
+          [ 'a' , '3' , false , '/assets/images/starship-a-3.png'],
+          [ 'a' , '4' , false , '/assets/images/starship-a-4.png'],
+          [ 'a' , '4' , false , '/assets/images/starship-a-4.png'],
+          [ 'a' , '4' , false , '/assets/images/starship-a-4.png'],
+          [ 'a' , '5' , false , '/assets/images/starship-a-5.png'],
+          [ 'a' , '5' , false , '/assets/images/starship-a-5.png'],
+          [ 'a' , '5' , false , '/assets/images/starship-a-5.png'],
+          [ 'a' , '5' , false , '/assets/images/starship-a-5.png'],
+          [ 'a' , '6' , false , '/assets/images/starship-a-6.png'],
+          [ 'a' , '6' , false , '/assets/images/starship-a-6.png'],
+          [ 'a' , '6' , false , '/assets/images/starship-a-6.png'],
+          [ 'a' , '6' , false , '/assets/images/starship-a-6.png'],
+          [ 'a' , '7' , false , '/assets/images/starship-a-7.png'],
+          [ 'a' , '7' , false , '/assets/images/starship-a-7.png'],
+          [ 'a' , '7' , false , '/assets/images/starship-a-7.png'],
+          [ 'a' , '7' , false , '/assets/images/starship-a-7.png'],
+          [ 'a' , '8' , false , '/assets/images/starship-a-8.png'],
+          [ 'a' , '8' , false , '/assets/images/starship-a-8.png'],
+          [ 'a' , '8' , false , '/assets/images/starship-a-8.png'],
+          [ 'a' , '8' , false , '/assets/images/starship-a-8.png'],
+          [ 'a' , '8' , false , '/assets/images/starship-a-8.png'],
+          [ 'a' , '9' , false , '/assets/images/starship-a-9.png'],
+          [ 'a' , '9' , false , '/assets/images/starship-a-9.png'],
+          [ 'a' , '9' , false , '/assets/images/starship-a-9.png'],
+          [ 'a' , '9' , false , '/assets/images/starship-a-9.png'],
+          [ 'a' , '9' , false , '/assets/images/starship-a-9.png'],
+          [ 'a' , '9' , false , '/assets/images/starship-a-9.png'],
+          [ 'a' , '9' , false , '/assets/images/starship-a-9.png'],
+          [ 'a' , '9' , false , '/assets/images/starship-a-9.png'],
+          [ 'a' , 'S' , false , '/assets/images/starship-a-suicide.png'],
+          [ 'a' , 'M' , false , '/assets/images/starship-a-mine.png'],
+          [ 'a' , 'M' , false , '/assets/images/starship-a-mine.png'],
+          [ 'a' , 'M' , false , '/assets/images/starship-a-mine.png'],
+          [ 'a' , 'M' , false , '/assets/images/starship-a-mine.png'],
+          [ 'a' , 'M' , false , '/assets/images/starship-a-mine.png'],
+          [ 'a' , 'M' , false , '/assets/images/starship-a-mine.png'],
+          [ 'a' , 'F' , false , '/assets/images/starship-a-flag.png'],
+          [ 'f' , '1' , false , '/assets/images/starship-f-1.png'],
+          [ 'f' , '2' , false , '/assets/images/starship-f-2.png'],
+          [ 'f' , '3' , false , '/assets/images/starship-f-3.png'],
+          [ 'f' , '3' , false , '/assets/images/starship-f-3.png'],
+          [ 'f' , '4' , false , '/assets/images/starship-f-4.png'],
+          [ 'f' , '4' , false , '/assets/images/starship-f-4.png'],
+          [ 'f' , '4' , false , '/assets/images/starship-f-4.png'],
+          [ 'f' , '5' , false , '/assets/images/starship-f-5.png'],
+          [ 'f' , '5' , false , '/assets/images/starship-f-5.png'],
+          [ 'f' , '5' , false , '/assets/images/starship-f-5.png'],
+          [ 'f' , '5' , false , '/assets/images/starship-f-5.png'],
+          [ 'f' , '6' , false , '/assets/images/starship-f-6.png'],
+          [ 'f' , '6' , false , '/assets/images/starship-f-6.png'],
+          [ 'f' , '6' , false , '/assets/images/starship-f-6.png'],
+          [ 'f' , '6' , false , '/assets/images/starship-f-6.png'],
+          [ 'f' , '7' , false , '/assets/images/starship-f-7.png'],
+          [ 'f' , '7' , false , '/assets/images/starship-f-7.png'],
+          [ 'f' , '7' , false , '/assets/images/starship-f-7.png'],
+          [ 'f' , '7' , false , '/assets/images/starship-f-7.png'],
+          [ 'f' , '8' , false , '/assets/images/starship-f-8.png'],
+          [ 'f' , '8' , false , '/assets/images/starship-f-8.png'],
+          [ 'f' , '8' , false , '/assets/images/starship-f-8.png'],
+          [ 'f' , '8' , false , '/assets/images/starship-f-8.png'],
+          [ 'f' , '8' , false , '/assets/images/starship-f-8.png'],
+          [ 'f' , '9' , false , '/assets/images/starship-f-9.png'],
+          [ 'f' , '9' , false , '/assets/images/starship-f-9.png'],
+          [ 'f' , '9' , false , '/assets/images/starship-f-9.png'],
+          [ 'f' , '9' , false , '/assets/images/starship-f-9.png'],
+          [ 'f' , '9' , false , '/assets/images/starship-f-9.png'],
+          [ 'f' , '9' , false , '/assets/images/starship-f-9.png'],
+          [ 'f' , '9' , false , '/assets/images/starship-f-9.png'],
+          [ 'f' , '9' , false , '/assets/images/starship-f-9.png'],
+          [ 'f' , 'S' , false , '/assets/images/starship-f-suicide.png'],
+          [ 'f' , 'M' , false , '/assets/images/starship-f-mine.png'],
+          [ 'f' , 'M' , false , '/assets/images/starship-f-mine.png'],
+          [ 'f' , 'M' , false , '/assets/images/starship-f-mine.png'],
+          [ 'f' , 'M' , false , '/assets/images/starship-f-mine.png'],
+          [ 'f' , 'M' , false , '/assets/images/starship-f-mine.png'],
+          [ 'f' , 'M' , false , '/assets/images/starship-f-mine.png'],
+          [ 'f' , 'F' , false , '/assets/images/starship-f-flag.png'],
+          [ 'o' , 'E' , true  , '/assets/images/empty.png' ],  // an empty square
+          [ 'x' , 'L' , true  , '/assets/images/left-top-star.png' ], // quadrants
+          [ 'x' , 'R' , true  , '/assets/images/right-top-star.png' ], // of
+          [ 'x' , 'V' , true  , '/assets/images/right-bot-star.png'],  // forbidden
+          [ 'x' , 'O' , true  , '/assets/images/left-bot-star.png']  // zones
       ]
 // The initial, empty playing Board.
 var Board = [
@@ -117,7 +117,9 @@ var TrayF = [
       [ 60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
       [ 70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
 ]
-BuildFirebaseArray();
+setBoard();
+setRemaining();
+// BuildFirebaseArray();
 
 
 // identify the addresses of the data
@@ -478,6 +480,7 @@ function setBoard() {
   setToken(77,6,1);     // mine
   setToken(78,9,1);     // mine
   setToken(79,9,5);     // flag
+  BuildFirebaseArray();
 }
 
 // The above is scattershot. Need to place tokens that were poorly commanded
@@ -510,5 +513,7 @@ function setRemaining() {
       }
     }
   }
+
+  BuildFirebaseArray();
 
 }
