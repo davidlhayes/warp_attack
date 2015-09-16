@@ -275,9 +275,10 @@ function getBoard() {
 // ]);
 
 warpApp.controller('WarpCtrl', ['$scope', function($scope) {
-    $scope.row3Cell8r = Token[Board[3][8]][1];
-    $scope.row3Cell8 = Token[Board[3][8]][3];
-    $scope.row3Cell9 = Token[Board[3][9]][3];
+    $scope.row9Cell2r = Token[Board[9][2]][1];
+    $scope.row9Cell2 = Token[Board[9][2]][3];
+    $scope.row1Cell8r = Token[Board[1][8]][1];
+    $scope.row1Cell8 = Token[Board[1][8]][3];
 
   // $scope.messages =
 //     [

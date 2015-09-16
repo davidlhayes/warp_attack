@@ -26,8 +26,8 @@
       <button ng-click="authDataCallback()">Wanna see a secret word?</button>
   </div>
   <div ng-controller="WarpCtrl">
-    <div class="token">{[{row3Cell8r}]}<img "width=30px" ng-src="{[{row3Cell9}]}"></div>
-    <div class="token"><img ng-src="{[{row3Cell9}]}"></div>
+
+
     <!-- <article ng-repeat="message in messages">
       Animal: <h3> {[{board }]} </h3>
       UserName: <h3> {[{message.user}]} </h3>
@@ -43,17 +43,17 @@
       </p>
       <hr>
     </article> -->
-  </div>
 
 
 
-  <table >
+
+  <table id='warpattack'>
     <tr>
       <td>
-        <div class="square" id="r0c0">0</div>
+    <div class="token alliance">{[{row9Cell2r}]}<img "width=30px" ng-src="{[{row9Cell2}]}"></div>
       </td>
       <td>
-        <div class="square" id="r0c1">1</div>
+    <div class="token federation">{[{row1Cell8r}]}<img ng-src="{[{row1Cell8}]}"></div>
       </td>
       <td>
         <div class="square" id="r0c2">2</div>
@@ -370,7 +370,7 @@
     </tr>
   </table>
   <ul id='add'></ul>
-
+  </div>
 </div>
 <script>
 var fbref = new Firebase("https://shining-heat-2898.firebaseio.com/Board/square");

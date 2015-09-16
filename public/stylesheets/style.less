@@ -1,6 +1,8 @@
 // Variables
 @titleFont: 'Share', sans-serif;
 @titleColor: rgb(240,207,61);
+@alliance_red: rgb(159, 50, 50);
+@federation_blue: rgb(59, 26, 191);
 
 body {
   padding: 50px;
@@ -19,15 +21,24 @@ a {
   background-color: green;
   font-size: 100px;
 }
-
+.federation {
+  color: @federation_blue;
+}
+.alliance {
+  color: @alliance_red;
+}
 .token {
-  width: 30px;
-  height: 40px;
+  width: 40px;
+  height: 50px;
+  text-align: right;
+  padding-right: 3px;
   // border: solid 1px white;
   border-radius: 5px;
   background-color: rgba(255,255,255,.3);
   img {
-    width: 25px;
+    margin-right: 3px;
+    margin-bottom: 8px;
+    width: 40px;
   }
 }
 
@@ -46,11 +57,20 @@ article {
 table {
   margin: 0 auto;
   border-collapse: collapse;
+  background-color: rgba(255,255,255,.0) !important;
+  tr {
+    background-color: rgba(255,255,255,.0) !important;
+  }
   th, td {
     border: 1px solid rgb(0,255,245);
-    background-color: rgb(100,100,100) !important;
   }
 }
+
+// #warpattack {
+//   background-color: rgba(255,255,255.1);
+// }
+
+
 .square {
   width: 35px;
   height: 50px;
