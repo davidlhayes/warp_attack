@@ -256,7 +256,7 @@ function moveToken(token,dstR,dstC) {
         console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
           // special case where attacked square is a mine, but token is not rank 8 (minesweeper)
       } else if (Token[Board[dstR][dstC]]=='M') {
-          if (Token[token][2]=='8') {
+          if (Token[token][1]=='8') {
             result = 'mine disarmed';
           } else {
             result = 'blown up';
@@ -312,6 +312,8 @@ function processResult(result) {
 
 function checkMove(token,dstR,dstC) {
   var origin = findToken(token);
+  // token type check
+  if ((Token[token][1]=='M' || (Token[token][1]=='F')) ) return 'can\'t move that token ';
   // same square check
   if ((dstR==origin[0]) && (dstC==origin[1])) return 'destination matches origin'
   // board boundaries
@@ -607,34 +609,3 @@ function setRemaining() {
   BuildFirebaseArray();
 
 }
-
-// the following listeners are tied to buttons
-// quickly set Federation side
-$('#quickSetF').on('click', function() {
-  setFederation();
-});
-// quickly set Alliance side
-$('#quickSetA').on('click', function() {
-  setAlliance();
-});
-// quickly set the whole Board
-$('#quickAll').on('click', function() {
-  setBoard();
-});
-// send all my tokens back to the tray
-$('#reset').on('click', function() {
-  if (MyFleet='a') {
-    var lo = 0;
-    var hi = 4;
-    setTrayA();
-  } else {
-    var lo = 6;
-    var hi = 10;
-    setTrayF();
-  }
-  for (var i=0; i<10; i++) {
-    for (var j=lo; j<hi; j++) {
-      Board[i][j]=0;
-    }
-  }
-  RenderBoard();

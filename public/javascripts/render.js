@@ -1305,25 +1305,6 @@ $(document).ready( function(){
     }
   });
 
-  $('#main-r3c5').on('click', function () {
-    if ($(this).children('img').hasClass('toMove')) {
-      $(this).children('img').removeClass('toMove');
-    } else if ($('body').has('img.toMove').length==0) {
-      $(this).children('img').addClass('toMove');
-      TokenToMove = Board[3][5];             // cell-specific
-    } else {
-      // this is the proposed destination square
-      tokenStr = $('main').find('img.toMove')
-      moveToken(TokenToMove,3,5);            // cell-specific
-      RenderBoard();
-      if (MyFleet=='a') {
-        renderTrayA();
-      } else {
-        renderTrayF();
-      }
-    }
-  });
-
   $('#main-r3c6').on('click', function () {
     if ($(this).children('img').hasClass('toMove')) {
       $(this).children('img').removeClass('toMove');
@@ -2567,11 +2548,49 @@ $(document).ready( function(){
 // End main board cell listeners
 
 
-
-
-
-
-
-
+    // the following listeners are tied to buttons
+    // quickly set Federation side
+    $('#quickSetF').on('click', function() {
+      SetFederation();
+      renderTrayF();
+      RenderBoard();
+    });
+    $('#quickSetA').on('click', function() {
+      SetFederation();
+      renderTrayA();
+      RenderBoard();
+    });
+    $('#fed').on('click', function() {
+      Fleet='f';
+      console.log('F');
+    });
+    // quickly set Alliance side
+    $('#alliance').on('click', function() {
+      Fleet='a';
+      console.log('A');
+    });
+    // quickly set the whole Board
+    $('#quickAll').on('click', function() {
+      SetBoard();
+      console.log('all');
+    });
+    // send all my tokens back to the tray
+    $('#reset').on('click', function() {
+      if (MyFleet='a') {
+        var lo = 0;
+        var hi = 4;
+        setTrayA();
+      } else {
+        var lo = 6;
+        var hi = 10;
+        setTrayF();
+      }
+      for (var i=0; i<10; i++) {
+        for (var j=lo; j<hi; j++) {
+          Board[i][j]=0;
+        }
+      }
+      RenderBoard();
+    });
 
 });
