@@ -209,85 +209,105 @@ function tokenUnset(token) {
 
 function moveToken(token,dstR,dstC) {
   var origin = findToken(token);  // 3-element array: arrayname, row, col
-  console.log(origin);
-  var target = checkMove(token,dstR,dstC);
-  var result = '';
-  // move if space is available
-  if (target=='empty') {
-    Board[dstR][dstC] = token;
-    switch (origin[0]) {
-      case 'TrayA':
-        TrayA[origin[1]][origin[2]] = 80;
-        break;
-      case 'TrayF':
-        TrayF[origin[1]][origin[2]] = 80;
-        break;
-      case 'Board':
-        Board[origin[1]][origin[2]] = 80;
-        break;
-      default:
-        alert('moveToken is broken');
+  if (Token[token][0] == Turn) {  // is it your turn?
+    console.log(origin);
+    console.log('this turn: ' + Turn);
+    var target = checkMove(token,dstR,dstC);
+    var result = '';
+    if (Turn=='a') {
+      RefTurn.update({"turn":"f"})
+    } else if (Turn=='f') {
+      RefTurn.update({"turn":"a"})
     }
-    result = 'moved';
-  } else if (target=='enemy') { // battle if space is occupied by an enemy
-    // check for suicide case (S beats 1)
-    if (Token[token][1]=='S' && Token[Board[dstR][dstC]]=='1') {
-      //the mover takes the attacked space;
+    // move if space is available
+    if (target=='empty') {
       Board[dstR][dstC] = token;
-      // find a tray space for the loser
-      tokenUnset(Board[dstR][dstC]);
-      tokenUnset(token);
-      reuslt = 'suicide';
-    } else if (Token[token][1]=='1' && Token[Board[dstR][dstC]]=='S')  {
-        // mover is the loser
-        tokenUnset(token);
-        // reveal the victor for the rest of the game
+      switch (origin[0]) {
+        case 'TrayA':
+          TrayA[origin[1]][origin[2]] = 80;
+          break;
+        case 'TrayF':
+          TrayF[origin[1]][origin[2]] = 80;
+          break;
+        case 'Board':
+          Board[origin[1]][origin[2]] = 80;
+          break;
+        default:
+          alert('moveToken is broken');
+      }
+      console.log('Next turn: ' + Turn)
+      result = 'moved';
+    } else if (target=='enemy') { // battle if space is occupied by an enemy
+      // check for suicide case (S beats 1)
+      if (Token[token][1]=='S' && Token[Board[dstR][dstC]]=='1') {
+        //the mover takes the attacked space;
+        Board[dstR][dstC] = token;
+        // find a tray space for the loser
         tokenUnset(Board[dstR][dstC]);
+        tokenUnset(token);
         reuslt = 'suicide';
-        // special case where attacked square is a mine, but token is not rank 8 (minesweeper)
-    } else if (Token[Board[dstR][dstC]]=='M') {
-        if (Token[token][2]=='8') {
-          result = 'mine disarmed';
-        } else {
-          result = 'blown up';
+        console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+      } else if (Token[token][1]=='1' && Token[Board[dstR][dstC]]=='S')  {
+          // mover is the loser
+          tokenUnset(token);
+          // reveal the victor for the rest of the game
+          tokenUnset(Board[dstR][dstC]);
+          reuslt = 'suicide';
+        console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+          // special case where attacked square is a mine, but token is not rank 8 (minesweeper)
+      } else if (Token[Board[dstR][dstC]]=='M') {
+          if (Token[token][2]=='8') {
+            result = 'mine disarmed';
+          } else {
+            result = 'blown up';
+            tokenUnset(token);
+            tokenUnset(Board[dstR][dstC]);
+          }
+          console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+          processResult(result);
+          // check for a win/was the flag attacked/captured?
+      } else if (Token[Board[dstR][dstC]][1]=='F') {
+          result = 'win';
+          // check for equal rank--both lose
+          console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+          processResult(result);
+      } else if (Token[token][1] == Token[Board[dstR][dstC]][1]) {
+          result = 'double loss';
           tokenUnset(token);
           tokenUnset(Board[dstR][dstC]);
-        }
-        // check for a win/was the flag attacked/captured?
-    } else if (Token[Board[dstR][dstC]][1]=='F') {
-        result = 'win';
-        // check for equal rank--both lose
-    } else if (Token[token][1] == Token[Board[dstR][dstC]][1]) {
-        result = 'double loss';
-        tokenUnset(token);
-        tokenUnset(Board[dstR][dstC]);
-      // check for attacker win
-    } else if (Token[token][1] < Token[Board[dstR][dstC]][1]) {
-        result = 'mover wins';
-        tokenUnset(Board[dstR][dstC]);
-        Board[dstR][dstC] = token;
-        Board[origin[1]][origin[2]] = 80;
-      // check for attacker lose
-    } else if (Token[token][1] > Token[Board[dstR][dstC]][1]) {
-        result = 'mover loses';
-        tokenUnset(token);
-        Board[origin[1]][origin[2]] = 80;
+          console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]],' ' + result);
+          processResult(result);
+        // check for attacker win
+      } else if (Token[token][0],Token[token][1] < Token[Board[dstR][dstC]][1]) {
+          result = 'mover wins';
+          tokenUnset(Board[dstR][dstC]);
+          Board[dstR][dstC] = token;
+          Board[origin[1]][origin[2]] = 80;
+          console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+        processResult(result);
+        // check for attacker lose
+      } else if (Token[token][1] > Token[Board[dstR][dstC]][1]) {
+          result = 'mover loses';
+          tokenUnset(token);
+          Board[origin[1]][origin[2]] = 80;
+        console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+        processResult(result);
+      }
+    } else {
+        result = 'Move not allowed because ' + target;
+        processResult(result);
     }
   } else {
-      result = 'Move not allowed because ' + target;
-      processResult(result);
-  }
+    result = 'it was not your turn';
+    processResult(result);
+  } // was it your turn?
+}
+
 // Process result
 
 function processResult(result) {
   // messages should go to message panel
-  console.log(result);
-}
-
-
-
-
-
+  console.log('Result: ' + result);
 }
 
 function checkMove(token,dstR,dstC) {
@@ -434,96 +454,124 @@ function findToken(k) {
   }
 }
 
-function setBoard() {
+function SetBoard() {
+  SetFederation();
+  SetAlliance();
+  RenderBoard();
+  BuildFirebaseArray();
+};
   // for (var i= 0; i<9; i++) {
   //   for (var j=0; j<9; j++) {
   //     setToken(i,j,80);
   //   }
   // }
+
+function SetAlliance() {
 // Alliance
-  setToken(0,0,4);      // rank 1
-  setToken(1,1,9);      // rank 2
-  setToken(2,3,2);      // rank 3
-  setToken(3,0,9);      // rank 3
-  setToken(4,3,1);      // rank 4
-  setToken(5,0,0);      // rank 4
-  setToken(6,2,1);      // rank 4
-  setToken(7,1,4);      // rank 5
-  setToken(8,2,4);      // rank 5
-  setToken(9,2,0);      // rank 5
-  setToken(10,3,8);     // rank 5
-  setToken(11,1,0);     // rank 6
-  setToken(12,3,0);     // rank 6
-  setToken(13,1,1);     // rank 6
-  setToken(14,1,8);     // rank 6
-  setToken(15,1,3);     // rank 7
-  setToken(16,1,5);     // rank 7
-  setToken(17,2,2);     // rank 7
-  setToken(18,2,9);     // rank 7
-  setToken(19,3,9);     // rank 8
-  setToken(20,3,8);     // rank 8
-  setToken(21,1,8);     // rank 8
-  setToken(22,1,4);     // rank 8
-  setToken(23,2,7);     // rank 8
-  setToken(24,2,3);     // rank 9
-  setToken(25,3,5);     // rank 9
-  setToken(26,2,7);     // rank 9
-  setToken(27,2,4);     // rank 9
-  setToken(28,1,6);     // rank 9
-  setToken(29,2,7);     // rank 9
-  setToken(30,3,4);     // rank 9
-  setToken(31,3,2);     // rank 9
-  setToken(32,3,1);     // suicide ship
-  setToken(33,2,2);     // mine
-  setToken(34,0,1);     // mine
-  setToken(35,3,2);     // mine
-  setToken(36,2,6);     // mine
-  setToken(37,0,5);     // mine
-  setToken(38,1,4);     // mine
-  setToken(39,1,5);     // flag
-// Federation
-  setToken(40,9,0);     // rank 1
-  setToken(41,6,7);     // rank 2
-  setToken(42,8,1);     // rank 3
-  setToken(43,9,1);     // rank 3
-  setToken(44,6,4);     // rank 4
-  setToken(45,5,3);     // rank 4
-  setToken(46,8,9);     // rank 4
-  setToken(47,9,7);     // rank 5
-  setToken(48,8,0);     // rank 5
-  setToken(49,6,1);     // rank 5
-  setToken(50,9,8);     // rank 5
-  setToken(51,7,1);     // rank 6
-  setToken(52,7,7);     // rank 6
-  setToken(53,6,4);     // rank 6
-  setToken(54,8,7);     // rank 6
-  setToken(55,8,4);     // rank 7
-  setToken(56,8,1);     // rank 7
-  setToken(57,7,0);     // rank 7
-  setToken(58,8,5);     // rank 7
-  setToken(59,6,8);     // rank 8
-  setToken(60,6,2);     // rank 8
-  setToken(61,8,3);     // rank 8
-  setToken(62,6,8);     // rank 8
-  setToken(63,9,1);     // rank 8
-  setToken(64,7,0);     // rank 9
-  setToken(65,7,9);     // rank 9
-  setToken(66,7,5);     // rank 9
-  setToken(67,6,3);     // rank 9
-  setToken(68,7,4);     // rank 9
-  setToken(69,8,3);     // rank 9
-  setToken(70,8,8);     // rank 9
-  setToken(71,6,5);     // rank 9
-  setToken(72,6,2);     // Suicide ship
-  setToken(73,8,5);     // mine
-  setToken(74,3,1);     // mine
-  setToken(75,6,4);     // mine
-  setToken(76,9,0);     // mine
-  setToken(77,6,1);     // mine
-  setToken(78,9,1);     // mine
-  setToken(79,9,5);     // flag
+  setToken(10,0,0);
+  setToken(20,0,1);
+  setToken(12,0,2);
+  setToken(33,0,3);
+  setToken(39,0,4);
+  setToken(5,0,5);
+  setToken(35,0,6);
+  setToken(24,0,7);
+  setToken(13,0,8);
+  setToken(16,0,9);
+  setToken(37,1,0);
+  setToken(18,1,1);
+  setToken(2,1,2);
+  setToken(8,1,3);
+  setToken(25,1,4);
+  setToken(0,1,5);
+  setToken(36,1,6);
+  setToken(26,1,7);
+  setToken(28,1,8);
+  setToken(4,1,9);
+  setToken(7,2,0);
+  setToken(3,2,1);
+  setToken(32,2,2);
+  setToken(14,2,3);
+  setToken(1,2,4);
+  setToken(19,2,5);
+  setToken(15,2,6);
+  setToken(23,2,7);
+  setToken(9,2,8);
+  setToken(34,2,9);
+  setToken(29,3,0);
+  setToken(38,3,1);
+  setToken(21,3,2);
+  setToken(17,3,3);
+  setToken(27,3,4);
+  setToken(6,3,5);
+  setToken(30,3,6);
+  setToken(22,3,7);
+  setToken(11,3,8);
+  setToken(31,3,9);
+}
+function SetFederation() {
+  // Federation
+  setToken(64,6,0);
+  setToken(68,6,1);
+  setToken(50,6,2);
+  setToken(54,6,3);
+  setToken(53,6,4);
+  setToken(65,6,5);
+  setToken(59,6,6);
+  setToken(42,6,7);
+  setToken(70,6,8);
+  setToken(61,6,9);
+  setToken(44,7,0);
+  setToken(58,7,1);
+  setToken(41,7,2);
+  setToken(75,7,3);
+  setToken(46,7,4);
+  setToken(77,7,5);
+  setToken(49,7,6);
+  setToken(47,7,7);
+  setToken(76,7,8);
+  setToken(45,7,9);
+  setToken(72,8,0);
+  setToken(74,8,1);
+  setToken(60,8,2);
+  setToken(57,8,3);
+  setToken(43,8,4);
+  setToken(79,8,5);
+  setToken(40,8,6);
+  setToken(73,8,7);
+  setToken(62,8,8);
+  setToken(52,8,9);
+  setToken(48,9,0);
+  setToken(56,9,1);
+  setToken(63,9,2);
+  setToken(67,9,3);
+  setToken(69,9,4);
+  setToken(78,9,5);
+  setToken(66,9,6);
+  setToken(71,9,7);
+  setToken(51,9,8);
+  setToken(55,9,9);
   // BuildFirebaseArray();
 }
+
+
+
+function SaveFederation() {   // a quick demo function
+  for (var i=6;i<10;i++) {
+    for (var j=0;j<10;j++) {
+      console.log('setToken(' + Board[i][j] + ',' + i + ',' + j + ');');
+    }
+  }
+}
+
+function SaveAlliance() {   // a quick demo function
+  for (var i=0;i<4;i++) {
+    for (var j=0;j<10;j++) {
+      console.log('setToken(' + Board[i][j] + ',' + i + ',' + j + ');');
+    }
+  }
+}
+
 
 // The above is scattershot. Need to place tokens that were poorly commanded
 function setRemaining() {
@@ -559,3 +607,34 @@ function setRemaining() {
   BuildFirebaseArray();
 
 }
+
+// the following listeners are tied to buttons
+// quickly set Federation side
+$('#quickSetF').on('click', function() {
+  setFederation();
+});
+// quickly set Alliance side
+$('#quickSetA').on('click', function() {
+  setAlliance();
+});
+// quickly set the whole Board
+$('#quickAll').on('click', function() {
+  setBoard();
+});
+// send all my tokens back to the tray
+$('#reset').on('click', function() {
+  if (MyFleet='a') {
+    var lo = 0;
+    var hi = 4;
+    setTrayA();
+  } else {
+    var lo = 6;
+    var hi = 10;
+    setTrayF();
+  }
+  for (var i=0; i<10; i++) {
+    for (var j=lo; j<hi; j++) {
+      Board[i][j]=0;
+    }
+  }
+  RenderBoard();

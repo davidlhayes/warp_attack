@@ -204,7 +204,7 @@ warpApp.controller('PlayCtrl', function($scope) {
 });
 
 // Talk to Firebase
-var MyList;
+// var MyList;
 var newObj;
 var MyArray = [];
 
@@ -214,7 +214,7 @@ refTurn.update({"turn":"a"})
 
 
 
-MyList = new Firebase(FURL);
+// MyList = new Firebase(FURL);
 
 // Set Firebase Array equal to local Board
 

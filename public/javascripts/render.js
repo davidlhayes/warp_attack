@@ -2,7 +2,7 @@
     var TokenToMove;
     var Turn;
 
-function renderBoard() {
+function RenderBoard() {
 
   var mpref = '#main-';
   var tpref = '#tray-';
@@ -43,7 +43,7 @@ function renderTrayA() {
       if (rank=='E') {
         tokStr = '';
       } else if (rank != 'X') {
-        imgUrl = Token[Board[i][j]][3];
+        imgUrl = Token[TrayA[i][j]][3];
         tokStr = "<img class='token' src='" + imgUrl + "'>";
       }
       if (rank != 'X') $(locStr).html(tokStr);
@@ -52,6 +52,7 @@ function renderTrayA() {
 }
 function renderTrayF() {
 
+// console.log('yeah, its renderTrayF');
   var mpref = '#main-';
   var tpref = '#tray-';
   // loop through Board array and set display Board to image url
@@ -80,11 +81,11 @@ function renderTrayF() {
 $(document).ready( function(){
 
   console.log('document is ready!');
-  renderBoard();
+  RenderBoard();
 
 // Tray cell listeners
-  Turn = 's'; // TEMPORARY
-  Fleet = 'f'; // TEMPORARY
+  // Turn = 's'; // TEMPORARY
+  MyFleet = 'f'; // TEMPORARY
 
   // Unfortunately, Trays must be transposed. Set up as 4 rows/10 cols,
   // it's actually displayed as 10 rows/4 cols
@@ -96,7 +97,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[0][0];             // cell-specific
         } else {
           TokenToMove = TrayF[0][0];
@@ -109,7 +110,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[0][1];             // cell-specific
         } else {
           TokenToMove = TrayF[0][1];
@@ -122,7 +123,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[0][2];             // cell-specific
         } else {
           TokenToMove = TrayF[0][2];
@@ -135,7 +136,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[0][3];             // cell-specific
         } else {
           TokenToMove = TrayF[0][3];
@@ -148,7 +149,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[1][0];             // cell-specific
         } else {
           TokenToMove = TrayF[1][0];
@@ -161,7 +162,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[1][1];             // cell-specific
         } else {
           TokenToMove = TrayF[1][1];
@@ -174,7 +175,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[1][2];             // cell-specific
         } else {
           TokenToMove = TrayF[1][2];
@@ -187,7 +188,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[1][3];             // cell-specific
         } else {
           TokenToMove = TrayF[1][3];
@@ -200,7 +201,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[2][0];             // cell-specific
         } else {
           TokenToMove = TrayF[2][0];
@@ -213,7 +214,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[2][1];             // cell-specific
         } else {
           TokenToMove = TrayF[2][1];
@@ -226,7 +227,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[2][2];             // cell-specific
         } else {
           TokenToMove = TrayF[2][2];
@@ -239,7 +240,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[2][3];             // cell-specific
         } else {
           TokenToMove = TrayF[2][3];
@@ -252,7 +253,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[3][0];             // cell-specific
         } else {
           TokenToMove = TrayF[3][0];
@@ -265,7 +266,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[3][1];             // cell-specific
         } else {
           TokenToMove = TrayF[3][1];
@@ -278,7 +279,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[3][2];             // cell-specific
         } else {
           TokenToMove = TrayF[3][2];
@@ -291,7 +292,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[3][3];             // cell-specific
         } else {
           TokenToMove = TrayF[3][3];
@@ -304,7 +305,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[4][0];             // cell-specific
         } else {
           TokenToMove = TrayF[4][0];
@@ -317,7 +318,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[4][1];             // cell-specific
         } else {
           TokenToMove = TrayF[4][1];
@@ -330,7 +331,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[4][2];             // cell-specific
         } else {
           TokenToMove = TrayF[4][2];
@@ -343,7 +344,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[4][3];             // cell-specific
         } else {
           TokenToMove = TrayF[4][3];
@@ -356,7 +357,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[5][0];             // cell-specific
         } else {
           TokenToMove = TrayF[5][0];
@@ -369,7 +370,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[5][1];             // cell-specific
         } else {
           TokenToMove = TrayF[5][1];
@@ -382,7 +383,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[5][2];             // cell-specific
         } else {
           TokenToMove = TrayF[5][2];
@@ -395,7 +396,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[5][3];             // cell-specific
         } else {
           TokenToMove = TrayF[5][3];
@@ -408,7 +409,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[6][0];             // cell-specific
         } else {
           TokenToMove = TrayF[6][0];
@@ -421,7 +422,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[6][1];             // cell-specific
         } else {
           TokenToMove = TrayF[6][1];
@@ -434,7 +435,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[6][2];             // cell-specific
         } else {
           TokenToMove = TrayF[6][2];
@@ -447,7 +448,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[6][3];             // cell-specific
         } else {
           TokenToMove = TrayF[6][3];
@@ -460,7 +461,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[7][0];             // cell-specific
         } else {
           TokenToMove = TrayF[7][0];
@@ -473,7 +474,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[7][1];             // cell-specific
         } else {
           TokenToMove = TrayF[7][1];
@@ -486,7 +487,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[7][2];             // cell-specific
         } else {
           TokenToMove = TrayF[7][2];
@@ -499,7 +500,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[7][3];             // cell-specific
         } else {
           TokenToMove = TrayF[7][3];
@@ -512,7 +513,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[8][0];             // cell-specific
         } else {
           TokenToMove = TrayF[8][0];
@@ -525,7 +526,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[8][1];             // cell-specific
         } else {
           TokenToMove = TrayF[8][1];
@@ -538,7 +539,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[8][2];             // cell-specific
         } else {
           TokenToMove = TrayF[8][2];
@@ -551,7 +552,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[8][3];             // cell-specific
         } else {
           TokenToMove = TrayF[8][3];
@@ -564,7 +565,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[9][0];             // cell-specific
         } else {
           TokenToMove = TrayF[9][0];
@@ -577,7 +578,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[9][1];             // cell-specific
         } else {
           TokenToMove = TrayF[9][1];
@@ -590,7 +591,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[9][2];             // cell-specific
         } else {
           TokenToMove = TrayF[9][2];
@@ -603,7 +604,7 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        if (Fleet=='a') {
+        if (MyFleet=='a') {
           TokenToMove = TrayA[9][3];             // cell-specific
         } else {
           TokenToMove = TrayF[9][3];
@@ -625,8 +626,12 @@ $(document).ready( function(){
     } else {
       // this is the proposed destination square
       moveToken(TokenToMove,0,0);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -641,8 +646,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,1);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -656,8 +665,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,2);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -671,8 +684,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,3);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -686,8 +703,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,4);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -701,8 +722,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,5);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -717,8 +742,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,6);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -732,8 +761,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,7);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -747,8 +780,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,8);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -762,8 +799,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,9);            // cell-specific
-      renderBoard();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
         renderTrayF();
+      }
     }
   });
 
@@ -777,8 +818,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,0);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -792,8 +837,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('#main').find('img.toMove')
       moveToken(TokenToMove,1,1);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -807,8 +856,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('body').find('img.toMove')
       moveToken(TokenToMove,1,2);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -822,8 +875,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,3);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -838,8 +895,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,4);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -853,8 +914,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,5);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -868,8 +933,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,6);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -883,8 +952,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,7);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -898,8 +971,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,8);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -914,8 +991,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,9);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -929,8 +1010,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,0);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -944,8 +1029,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,1);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -959,8 +1048,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,2);            // cell-specific
-      renderBoard();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
         renderTrayF();
+      }
     }
   });
 
@@ -974,8 +1067,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,3);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -989,8 +1086,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('#main').find('img.toMove')
       moveToken(TokenToMove,2,4);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1004,8 +1105,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('body').find('img.toMove')
       moveToken(TokenToMove,2,5);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1019,8 +1124,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,6);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1035,8 +1144,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,7);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1050,8 +1163,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,8);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1065,8 +1182,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,9);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1080,8 +1201,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,0);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1095,8 +1220,11 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,1);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1111,8 +1239,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,2);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1126,8 +1258,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,3);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1141,23 +1277,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,4);            // cell-specific
-      renderBoard();
-      renderTrayF();
-    }
-  });
-
-  $('#main-r3c5').on('click', function () {
-    if ($(this).children('img').hasClass('toMove')) {
-      $(this).children('img').removeClass('toMove');
-    } else if ($('body').has('img.toMove').length==0) {
-      $(this).children('img').addClass('toMove');
-      TokenToMove = Board[3][5];             // cell-specific
-    } else {
-      // this is the proposed destination square
-      tokenStr = $('main').find('img.toMove')
-      moveToken(TokenToMove,3,5);            // cell-specific
-      renderBoard();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
         renderTrayF();
+      }
     }
   });
 
@@ -1171,8 +1296,31 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,5);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
+    }
+  });
+
+  $('#main-r3c5').on('click', function () {
+    if ($(this).children('img').hasClass('toMove')) {
+      $(this).children('img').removeClass('toMove');
+    } else if ($('body').has('img.toMove').length==0) {
+      $(this).children('img').addClass('toMove');
+      TokenToMove = Board[3][5];             // cell-specific
+    } else {
+      // this is the proposed destination square
+      tokenStr = $('main').find('img.toMove')
+      moveToken(TokenToMove,3,5);            // cell-specific
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1186,8 +1334,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('#main').find('img.toMove')
       moveToken(TokenToMove,3,6);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1201,8 +1353,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('body').find('img.toMove')
       moveToken(TokenToMove,3,7);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1216,8 +1372,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,8);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1232,8 +1392,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,9);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1247,8 +1411,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,0);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1262,8 +1430,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,1);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1277,8 +1449,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,2);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1292,8 +1468,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,3);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1308,8 +1488,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,4);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1323,8 +1507,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,5);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1338,8 +1526,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,6);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1353,8 +1545,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,7);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1368,8 +1564,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,8);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1383,8 +1583,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('#main').find('img.toMove')
       moveToken(TokenToMove,4,9);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1398,8 +1602,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('body').find('img.toMove')
       moveToken(TokenToMove,5,0);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
 
   });
@@ -1414,8 +1622,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,1);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1430,8 +1642,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,2);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1445,8 +1661,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,3);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1460,8 +1680,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,4);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1475,8 +1699,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,5);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1490,8 +1718,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,6);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1506,8 +1738,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,7);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1521,8 +1757,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,8);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1536,8 +1776,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,9);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1551,8 +1795,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,0);            // cell-specific
-      renderBoard();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
         renderTrayF();
+      }
     }
   });
 
@@ -1566,8 +1814,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,1);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1581,8 +1833,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,2);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1596,8 +1852,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,3);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1611,8 +1871,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,4);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1626,8 +1890,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,5);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1641,8 +1909,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,6);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1656,8 +1928,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,7);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1671,8 +1947,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,8);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1686,8 +1966,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,9);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1701,8 +1985,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,0);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1716,8 +2004,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('#main').find('img.toMove')
       moveToken(TokenToMove,7,1);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1731,8 +2023,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('body').find('img.toMove')
       moveToken(TokenToMove,7,2);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1746,8 +2042,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,3);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1762,8 +2062,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,4);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1777,8 +2081,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,5);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1792,8 +2100,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,6);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1807,8 +2119,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,7);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1822,8 +2138,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,8);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1838,8 +2158,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,9);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1853,8 +2177,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,8,0);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1868,8 +2196,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,8,1);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1883,8 +2215,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,8,2);            // cell-specific
-      renderBoard();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
         renderTrayF();
+      }
     }
   });
 
@@ -1898,8 +2234,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,8,3);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1912,8 +2252,12 @@ $(document).ready( function(){
     } else {
       // this is the proposed destination square
       moveToken(TokenToMove,8,4);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1926,8 +2270,12 @@ $(document).ready( function(){
     } else {
       // this is the proposed destination square
       moveToken(TokenToMove,8,5);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1940,8 +2288,12 @@ $(document).ready( function(){
     } else {
       // this is the proposed destination square
       moveToken(TokenToMove,8,6);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1955,8 +2307,12 @@ $(document).ready( function(){
     } else {
       // this is the proposed destination square
       moveToken(TokenToMove,8,7);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1971,8 +2327,12 @@ $(document).ready( function(){
     } else {
       // this is the proposed destination square
       moveToken(TokenToMove,8,8);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -1988,8 +2348,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,8,9);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -2005,8 +2369,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,9,0);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -2022,8 +2390,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,9,1);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -2040,8 +2412,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove');
       moveToken(TokenToMove,9,2);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -2057,8 +2433,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,9,3);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -2074,8 +2454,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,9,4);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -2091,8 +2475,12 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,9,5);            // cell-specific
-      renderBoard();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
         renderTrayF();
+      }
     }
   });
 
@@ -2107,8 +2495,12 @@ $(document).ready( function(){
     } else {
       // this is the proposed destination square
       moveToken(TokenToMove,9,6);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -2123,8 +2515,12 @@ $(document).ready( function(){
     } else {
       // this is the proposed destination square
       moveToken(TokenToMove,9,7);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -2138,10 +2534,13 @@ $(document).ready( function(){
       TokenToMove = Board[9][8];             // cell-specific
     } else {
       // this is the proposed destination square
-      console.log('asd');
       moveToken(TokenToMove,9,8);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 
@@ -2157,9 +2556,22 @@ $(document).ready( function(){
     } else {
       // this is the proposed destination square
       moveToken(TokenToMove,9,9);            // cell-specific
-      renderBoard();
-      renderTrayF();
+      RenderBoard();
+      if (MyFleet=='a') {
+        renderTrayA();
+      } else {
+        renderTrayF();
+      }
     }
   });
 // End main board cell listeners
+
+
+
+
+
+
+
+
+
 });

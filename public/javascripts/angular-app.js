@@ -10,6 +10,23 @@ warpApp.config(['$interpolateProvider', function($interpolateProvider) {
   $interpolateProvider.endSymbol('}]}');
 }]);
 
+warpApp.controller('WarpCtrl', function($scope) {
+//
+
+  $scope.messages =
+    [
+      'test', 'ow', 'plz', 'work'
+    ]
+    // $scope.plusLike = function(index) {
+    //   $scope.messages[index].likes += 1;
+    // };
+    // $scope.minusLike = function(index) {
+    //   $scope.messages[index].likes -= 1;
+    // };
+    console.log($scope.messages)
+  });
+
+
 warpApp.controller('UserCtrl', function($scope) {
   $scope.addUser = function() {
     console.log('name = ' + $scope.enteredName);
@@ -211,8 +228,8 @@ var newObj;
 var MyArray = [];
 
 ref = new Firebase(FURL);
-refTurn = new Firebase(FURL + '\\turn');
-refTurn.update({"turn":"a"})
+RefTurn = new Firebase(FURL + '\\turn');
+// RefTurn.update({"turn":"a"})
 
 
 
@@ -233,7 +250,7 @@ function BuildFirebaseArray() {
 }
 // the following function listens for the turn attribute to change on Firebase
 // On that signal, the local board is wiped and synced to Firebase
-refTurn.on('value', function(snapshot) {
+RefTurn.on('value', function(snapshot) {
   newObj = snapshot.val();
   Turn = newObj['turn'];
   for (var key in newObj) {
@@ -249,15 +266,15 @@ refTurn.on('value', function(snapshot) {
 
 
 
-function getBoard() {
-
-
-   for (var key in newObj) {
-     Board.push(newObj[key]);
-   }
-   console.log(Board);
-
-}
+// function GetBoard() {
+//
+//
+//    for (var key in newObj) {
+//      Board.push(newObj[key]);
+//    }
+//    console.log(Board);
+//
+// }
 
 
 
@@ -276,41 +293,7 @@ function getBoard() {
   // }
 // ]);
 
-warpApp.controller('WarpCtrl', ['$scope', function($scope) {
-//
 
-  $scope.messages =
-    [
-      {
-        // user: 'Tom',
-        // date: new Date('2015', '09', '09'),
-        // image: 'http://www.cardinalsushi.com/images/soda.jpg',
-        text: 'Backbone stinks!'
-        // likes: 0
-      },
-      {
-        // user: 'James',
-        // date: new Date('2015', '09', '09'),
-        // image: 'http://www.vetprofessionals.com/catprofessional/images/home-cat.jpg',
-        text: 'Tom stinks! React+Backbone for life!'
-        // likes: 0
-      },
-      {
-        // user: 'Tristan',
-        // date: new Date('2015', '09', '09'),
-        // image: 'http://toytrucktoys.com/wp-content/uploads/2010/12/american-plastic-toy.jpg',
-        text: 'Nah!'
-        // likes: 0
-      }
-    ]
-    // $scope.plusLike = function(index) {
-    //   $scope.messages[index].likes += 1;
-    // };
-    // $scope.minusLike = function(index) {
-    //   $scope.messages[index].likes -= 1;
-    // };
-  }]
-);
 
 // Generate all the pieces needed.
 // 9-12 Using the hard-coded results of this object. Inserting it into the
@@ -318,7 +301,7 @@ warpApp.controller('WarpCtrl', ['$scope', function($scope) {
 
 // Not used now
 
-function tokens(playerId,fleet) {
+function tokens(playerId) {
   // define piece rank and number of pieces per rank
   var rank = ['1','2','3','4','5','6','7','8','9','suicide','mine','flag'];
   var dist = [ 1 , 1 , 2 , 3 , 4 , 4 , 4 , 5 , 8 ,    1    ,   6  ,   1  ];
@@ -327,7 +310,7 @@ function tokens(playerId,fleet) {
   var url_prefix = '/assets/images/starship-';
   var f = '';
   var pId = 0;
-  switch (fleet) {
+  switch (MyFleet) {
     case 'federation':
       f = 'f';
       pId = 0;
@@ -382,13 +365,13 @@ function messageBox(sender,message) {
   if (message == 'clear') {
     msgRef.remove();
   } else {
-    if (fleet=='a') {
+    if (MyFleet=='a') {
       html = "<p class='alliance'>" + message + "</p>";
-    } else if (fleet='f') {
+    } else if (MyFleet='f') {
       html = "<p class='alliance'>" + message + "</p>";
-    } else if (fleet='s') {
+    } else if (MyFleet='s') {
       html = "<p class='system'>" + message + "</p>";
-    } else if (fleet='o') {
+    } else if (MyFleet='o') {
       html = "<p class='utility'>" + message + "</p>";
     }
     msgRef.push(html);

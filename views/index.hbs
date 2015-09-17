@@ -26,8 +26,8 @@
       <button ng-click="authDataCallback()">Wanna see a secret word?</button>
   </div>
 
-</div>
 
+    <div id="fed">Choose F</div>
 
 <div class="row">
 
@@ -228,7 +228,7 @@
       <div ng-controller="WarpCtrl">
 
         <ul ng-repeat="message in messages">
-          <li>{[{ message.text }]}</li>
+          <li>{[{ message }]}</li>
         </ul>
 
       </div>
@@ -236,7 +236,20 @@
 
   </div>
 
+  </div>
+
 </div> <-- end row with boards -->
+<div class="clearfix"></div>
+<div id="buttons" class="row">
+  <div class="large-12 columns">
+    <button id="quickSetF"  class='button'>QSet Fed</button>
+    <button id="quickSetA" class='button'>QSet Ali</button>
+    <button id="quickAll" class='button'>QSet Brd</button>
+    <button id="reset" class='button'>Reset</button>
+
+    <button id="alliance" class='button'>Choose A</button>
+  </div>
+
 <script>
 var fbref = new Firebase("https://shining-heat-2898.firebaseio.com/Board/square");
     $(document).foundation();
