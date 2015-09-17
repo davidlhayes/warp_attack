@@ -98,7 +98,7 @@ $(document).ready( function(){
         $(this).children('img').addClass('toMove');
         if (Fleet=='a') {
           TokenToMove = TrayA[0][0];             // cell-specific
-        else {
+        } else {
           TokenToMove = TrayF[0][0];
         }
       }
@@ -109,7 +109,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[0][1];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[0][1];             // cell-specific
+        } else {
+          TokenToMove = TrayF[0][1];
+        }
       }
     });
 
@@ -118,7 +122,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[0][2];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[0][2];             // cell-specific
+        } else {
+          TokenToMove = TrayF[0][2];
+        }
       }
     });
 
@@ -127,7 +135,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[0][3];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[0][3];             // cell-specific
+        } else {
+          TokenToMove = TrayF[0][3];
+        }
       }
     });
 
@@ -136,7 +148,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[1][0];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[1][0];             // cell-specific
+        } else {
+          TokenToMove = TrayF[1][0];
+        }
       }
     });
 
@@ -145,7 +161,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[1][1];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[1][1];             // cell-specific
+        } else {
+          TokenToMove = TrayF[1][1];
+        }
       }
     });
 
@@ -154,7 +174,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[1][2];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[1][2];             // cell-specific
+        } else {
+          TokenToMove = TrayF[1][2];
+        }
       }
     });
 
@@ -163,7 +187,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[1][3];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[1][3];             // cell-specific
+        } else {
+          TokenToMove = TrayF[1][3];
+        }
       }
     });
 
@@ -172,7 +200,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[2][0];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[2][0];             // cell-specific
+        } else {
+          TokenToMove = TrayF[2][0];
+        }
       }
     });
 
@@ -181,7 +213,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[2][1];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[2][1];             // cell-specific
+        } else {
+          TokenToMove = TrayF[2][1];
+        }
       }
     });
 
@@ -190,7 +226,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[2][2];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[2][2];             // cell-specific
+        } else {
+          TokenToMove = TrayF[2][2];
+        }
       }
     });
 
@@ -199,7 +239,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[2][3];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[2][3];             // cell-specific
+        } else {
+          TokenToMove = TrayF[2][3];
+        }
       }
     });
 
@@ -208,7 +252,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[3][0];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[3][0];             // cell-specific
+        } else {
+          TokenToMove = TrayF[3][0];
+        }
       }
     });
 
@@ -217,7 +265,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[3][1];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[3][1];             // cell-specific
+        } else {
+          TokenToMove = TrayF[3][1];
+        }
       }
     });
 
@@ -226,7 +278,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[3][2];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[3][2];             // cell-specific
+        } else {
+          TokenToMove = TrayF[3][2];
+        }
       }
     });
 
@@ -235,21 +291,24 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[3][3];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[3][3];             // cell-specific
+        } else {
+          TokenToMove = TrayF[3][3];
+        }
       }
     });
 
     $('#tray-r4c0').on('click', function () {   // cell-specific
-      console.log('1');
       if ($(this).children('img').hasClass('toMove')) {
-        console.log('2');
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
-        console.log('3');
         $(this).children('img').addClass('toMove');
-        console.log('4')
-        TokenToMove = TrayF[4][0];             // cell-specific
-        console.log('5');
+        if (Fleet=='a') {
+          TokenToMove = TrayA[4][0];             // cell-specific
+        } else {
+          TokenToMove = TrayF[4][0];
+        }
       }
     });
 
@@ -258,7 +317,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[4][1];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[4][1];             // cell-specific
+        } else {
+          TokenToMove = TrayF[4][1];
+        }
       }
     });
 
@@ -267,7 +330,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[4][2];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[4][2];             // cell-specific
+        } else {
+          TokenToMove = TrayF[4][2];
+        }
       }
     });
 
@@ -276,7 +343,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[4][3];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[4][3];             // cell-specific
+        } else {
+          TokenToMove = TrayF[4][3];
+        }
       }
     });
 
@@ -285,7 +356,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[5][0];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[5][0];             // cell-specific
+        } else {
+          TokenToMove = TrayF[5][0];
+        }
       }
     });
 
@@ -294,7 +369,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[5][1];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[5][1];             // cell-specific
+        } else {
+          TokenToMove = TrayF[5][1];
+        }
       }
     });
 
@@ -303,7 +382,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[5][2];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[5][2];             // cell-specific
+        } else {
+          TokenToMove = TrayF[5][2];
+        }
       }
     });
 
@@ -312,7 +395,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[5][3];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[5][3];             // cell-specific
+        } else {
+          TokenToMove = TrayF[5][3];
+        }
       }
     });
 
@@ -321,7 +408,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[6][0];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[6][0];             // cell-specific
+        } else {
+          TokenToMove = TrayF[6][0];
+        }
       }
     });
 
@@ -330,7 +421,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[6][1];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[6][1];             // cell-specific
+        } else {
+          TokenToMove = TrayF[6][1];
+        }
       }
     });
 
@@ -339,7 +434,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[6][2];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[6][2];             // cell-specific
+        } else {
+          TokenToMove = TrayF[6][2];
+        }
       }
     });
 
@@ -348,7 +447,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[6][3];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[6][3];             // cell-specific
+        } else {
+          TokenToMove = TrayF[6][3];
+        }
       }
     });
 
@@ -357,7 +460,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[7][0];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[7][0];             // cell-specific
+        } else {
+          TokenToMove = TrayF[7][0];
+        }
       }
     });
 
@@ -366,7 +473,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[7][1];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[7][1];             // cell-specific
+        } else {
+          TokenToMove = TrayF[7][1];
+        }
       }
     });
 
@@ -375,7 +486,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[7][2];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[7][2];             // cell-specific
+        } else {
+          TokenToMove = TrayF[7][2];
+        }
       }
     });
 
@@ -384,7 +499,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[7][3];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[7][3];             // cell-specific
+        } else {
+          TokenToMove = TrayF[7][3];
+        }
       }
     });
 
@@ -393,7 +512,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[8][0];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[8][0];             // cell-specific
+        } else {
+          TokenToMove = TrayF[8][0];
+        }
       }
     });
 
@@ -402,7 +525,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[8][1];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[8][1];             // cell-specific
+        } else {
+          TokenToMove = TrayF[8][1];
+        }
       }
     });
 
@@ -411,7 +538,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[8][2];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[8][2];             // cell-specific
+        } else {
+          TokenToMove = TrayF[8][2];
+        }
       }
     });
 
@@ -420,7 +551,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[8][3];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[8][3];             // cell-specific
+        } else {
+          TokenToMove = TrayF[8][3];
+        }
       }
     });
 
@@ -429,7 +564,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[9][0];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[9][0];             // cell-specific
+        } else {
+          TokenToMove = TrayF[9][0];
+        }
       }
     });
 
@@ -438,7 +577,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[9][1];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[9][1];             // cell-specific
+        } else {
+          TokenToMove = TrayF[9][1];
+        }
       }
     });
 
@@ -447,7 +590,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[9][2];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[9][2];             // cell-specific
+        } else {
+          TokenToMove = TrayF[9][2];
+        }
       }
     });
 
@@ -456,7 +603,11 @@ $(document).ready( function(){
         $(this).children('img').removeClass('toMove');
       } else if ($('#tray').has('img.toMove').length==0) {
         $(this).children('img').addClass('toMove');
-        TokenToMove = TrayF[9][3];             // cell-specific
+        if (Fleet=='a') {
+          TokenToMove = TrayA[9][3];             // cell-specific
+        } else {
+          TokenToMove = TrayF[9][3];
+        }
       }
     });
 
@@ -473,7 +624,6 @@ $(document).ready( function(){
       TokenToMove = Board[0][0];             // cell-specific
     } else {
       // this is the proposed destination square
-      tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,0);            // cell-specific
       renderBoard();
       renderTrayF();
@@ -1888,8 +2038,7 @@ $(document).ready( function(){
       TokenToMove = Board[9][2];             // cell-specific
     } else {
       // this is the proposed destination square
-      tokenStr = $('main').find('img.toMove')
-      console.log(tokenStr,TokentoMove,9,2);
+      tokenStr = $('main').find('img.toMove');
       moveToken(TokenToMove,9,2);            // cell-specific
       renderBoard();
       renderTrayF();
