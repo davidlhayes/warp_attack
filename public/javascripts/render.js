@@ -1,6 +1,9 @@
 // Global variables
     var TokenToMove;
     var Turn;
+    var authData = ref.getAuth();
+
+
 
 function RenderBoard() {
 
@@ -11,6 +14,7 @@ function RenderBoard() {
   var imgUrl;
   var tokStr;
   var rank;
+  // check for log-in status
   for (var i=0; i<10; i++) {
     for (var j=0; j<10; j++) {
       locStr = mpref + 'r' + i + 'c' + j;
@@ -36,6 +40,7 @@ function renderTrayA() {
   var imgUrl;
   var tokStr;
   var rank;
+  // check for log-in status
   for (var i=0; i<10; i++) {
     for (var j=0; j<4; j++) {
       locStr = tpref + 'r' + i + 'c' + j;
@@ -60,6 +65,8 @@ function renderTrayF() {
   var imgUrl;
   var tokStr;
   var rank;
+  // check for log-in status
+
   for (var i=0; i<10; i++) {
     for (var j=0; j<4; j++) {
       locStr = tpref + 'r' + i + 'c' + j;
@@ -80,17 +87,17 @@ function renderTrayF() {
 
 $(document).ready( function(){
 
+
+
   console.log('document is ready!');
-  RenderBoard();
+  if (authData!=null) RenderBoard();
 
 // Tray cell listeners
-  // Turn = 's'; // TEMPORARY
-  MyFleet = 'f'; // TEMPORARY
 
   // Unfortunately, Trays must be transposed. Set up as 4 rows/10 cols,
   // it's actually displayed as 10 rows/4 cols
 
-  if (true) {   // true should be "Turn = 's'"
+  if (Turn='s') {   // true should be "Turn = 's'"
 
     $('#tray-r0c0').on('click', function () {   // cell-specific
       if ($(this).children('img').hasClass('toMove')) {
