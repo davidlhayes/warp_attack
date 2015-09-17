@@ -105,21 +105,31 @@ var Board = [
 
 // the initial home and final resting place for Alliance tokens
 var TrayA = [
-      [ 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 ],
-      [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
-      [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
-      [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
-    ];
+      [ 0 ,  1,  2,  3 ],
+      [ 4 ,  5,  6,  7 ],
+      [ 8 ,  9, 10, 11 ],
+      [12 , 13, 14, 15 ],
+      [16 , 17, 18, 19 ],
+      [20 , 21, 22, 23 ],
+      [24 , 25, 26 ,27 ],
+      [28 , 29, 30, 31 ],
+      [32 , 33, 34 ,35 ],
+      [36 , 37, 38 ,39 ]]
 // the initial home and final resting place for Federation tokens
 var TrayF = [
-      [ 40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
-      [ 50, 51, 52, 53, 54, 55, 56, 57, 58, 59],
-      [ 60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
-      [ 70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
-]
-setBoard();
-setRemaining();
-// BuildFirebaseArray();
+      [ 40, 41, 42, 43 ],
+      [ 44, 45, 46, 47 ],
+      [ 48, 49, 50, 51 ],
+      [ 52, 53, 54, 55 ],
+      [ 56, 57, 58, 59 ],
+      [ 60, 61, 62, 63 ],
+      [ 64, 65, 66, 67 ],
+      [ 68, 69, 70, 71 ],
+      [ 72, 73, 74, 75 ],
+      [ 76, 77, 78, 79 ]]
+// setBoard();
+// setRemaining();
+BuildFirebaseArray();
 
 
 // identify the addresses of the data
@@ -132,7 +142,7 @@ var wData = {};
 
 function setToken(token,dstR,dstC) {
     var tokenOrigin = findToken(token); // find token anywhere in trays or on Board
-    console.log('token ' + token + ' tokenOrigin: ' + tokenOrigin + ' dstR: ' + dstR + ' dstC: ' + dstC);
+    // console.log('token ' + token + ' tokenOrigin: ' + tokenOrigin + ' dstR: ' + dstR + ' dstC: ' + dstC);
     if (tokenOrigin.length==3) {        // valid return array [ 'array', row, col ]
       var originR = tokenOrigin[1];
       var originC = tokenOrigin[2];
@@ -199,12 +209,25 @@ function tokenUnset(token) {
 
 function moveToken(token,dstR,dstC) {
   var origin = findToken(token);  // 3-element array: arrayname, row, col
+  console.log(origin);
   var target = checkMove(token,dstR,dstC);
   var result = '';
   // move if space is available
   if (target=='empty') {
     Board[dstR][dstC] = token;
-    Board[origin[1]][origin[2]] = 80;
+    switch (origin[0]) {
+      case 'TrayA':
+        TrayA[origin[1]][origin[2]] = 80;
+        break;
+      case 'TrayF':
+        TrayF[origin[1]][origin[2]] = 80;
+        break;
+      case 'Board':
+        Board[origin[1]][origin[2]] = 80;
+        break;
+      default:
+        alert('moveToken is broken');
+    }
     result = 'moved';
   } else if (target=='enemy') { // battle if space is occupied by an enemy
     // check for suicide case (S beats 1)
@@ -256,7 +279,10 @@ function moveToken(token,dstR,dstC) {
   }
 // Process result
 
-
+function processResult(result) {
+  // messages should go to message panel
+  console.log(result);
+}
 
 
 
@@ -504,32 +530,32 @@ function setRemaining() {
   var empty = [];
   for (var i=0; i<4; i++) {
     for (var j=0; j<10; j++) {
-      console.log('TrayA ' + i,j,TrayA[i][j]);
+      // console.log('TrayA ' + i,j,TrayA[i][j]);
       if (TrayA[i][j] != 80) {
         empty = getIndexConstrained(Board,0,3,80)
-        console.log(empty);
+        // console.log(empty);
         if (empty.length < 3) {
-          console.log('HEY');
+          // console.log('HEY');
         }
-        console.log('A setToken: ' + TrayA[i][j],empty[0],empty[1])
+        // console.log('A setToken: ' + TrayA[i][j],empty[0],empty[1])
         setToken(TrayA[i][j],empty[0],empty[1]);
       }
     }
   }
 
   var empty = [];
-  for (var i=0; i<4; i++) {
-    for (var j=0; j<10; j++) {
-      console.log('TrayF ' + i,j,TrayF[i],[j]);
+  for (var i=0; i<10; i++) {
+    for (var j=0; j<4; j++) {
+      // console.log('TrayF ' + i,j,TrayF[i],[j]);
       if (TrayF[i][j] != 80) {
         empty = getIndexConstrained(Board,6,9,80)
-        console.log(empty);
-        console.log('F setToken: ' + TrayF[i][j],empty[0],empty[1])
+        // console.log(empty);
+        // console.log('F setToken: ' + TrayF[i][j],empty[0],empty[1])
         setToken(TrayF[i][j],empty[0],empty[1]);
       }
     }
   }
 
-  // BuildFirebaseArray();
+  BuildFirebaseArray();
 
 }
