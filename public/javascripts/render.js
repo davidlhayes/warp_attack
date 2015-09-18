@@ -2,7 +2,7 @@
     var TokenToMove;
     var Turn;
     var authData = ref.getAuth();
-
+    var MyFleet = 'a';
 
 
 function RenderBoard() {
@@ -87,10 +87,15 @@ function renderTrayF() {
 
 $(document).ready( function(){
 
+// clearTrayA();
+// clearTrayF();
 
+RenderBoard();
 
   console.log('document is ready!');
-  if (authData!=null) RenderBoard();
+  // force fresh log-in (that's the point we assign a fleet)
+  ref.unauth();
+  RefFleet.remove();
 
 // Tray cell listeners
 
@@ -634,6 +639,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       moveToken(TokenToMove,0,0);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -654,6 +668,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,1);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -673,6 +696,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,2);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -692,6 +724,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,3);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -710,6 +751,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,4);            // cell-specific
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       RenderBoard();
       if (MyFleet=='a') {
         renderTrayA();
@@ -730,6 +780,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,5);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -750,6 +809,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,6);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -769,6 +837,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,7);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -788,6 +865,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,8);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -807,6 +893,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,0,9);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -826,6 +921,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,0);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -844,6 +948,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('#main').find('img.toMove')
       moveToken(TokenToMove,1,1);            // cell-specific
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       RenderBoard();
       if (MyFleet=='a') {
         renderTrayA();
@@ -863,6 +976,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('body').find('img.toMove')
       moveToken(TokenToMove,1,2);            // cell-specific
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       RenderBoard();
       if (MyFleet=='a') {
         renderTrayA();
@@ -883,6 +1005,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,3);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -903,6 +1034,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,4);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -922,6 +1062,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,5);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -941,6 +1090,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,6);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -960,6 +1118,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,7);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -979,6 +1146,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,8);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -999,6 +1175,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,1,9);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1018,6 +1203,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,0);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1037,6 +1231,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,1);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1056,6 +1259,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,2);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1075,6 +1287,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,3);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1094,6 +1315,15 @@ $(document).ready( function(){
       tokenStr = $('#main').find('img.toMove')
       moveToken(TokenToMove,2,4);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1113,6 +1343,15 @@ $(document).ready( function(){
       tokenStr = $('body').find('img.toMove')
       moveToken(TokenToMove,2,5);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1132,6 +1371,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,6);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1152,6 +1400,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,7);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1171,6 +1428,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,8);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1190,6 +1456,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,2,9);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1209,6 +1484,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,0);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1227,6 +1511,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,1);            // cell-specific
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1246,6 +1539,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,2);            // cell-specific
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       RenderBoard();
       if (MyFleet=='a') {
         renderTrayA();
@@ -1266,6 +1568,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,3);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1285,6 +1596,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,4);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1304,6 +1624,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,5);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1323,6 +1652,15 @@ $(document).ready( function(){
       tokenStr = $('#main').find('img.toMove')
       moveToken(TokenToMove,3,6);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1342,6 +1680,15 @@ $(document).ready( function(){
       tokenStr = $('body').find('img.toMove')
       moveToken(TokenToMove,3,7);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1361,6 +1708,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,8);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1381,6 +1737,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,3,9);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1400,6 +1765,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,0);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1419,6 +1793,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,1);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1438,6 +1821,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,2);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1457,6 +1849,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,3);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1477,6 +1878,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,4);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1496,6 +1906,16 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,5);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
+      RefTurn.update({"turn":"f"});
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1515,6 +1935,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,6);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1534,6 +1963,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,7);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1553,6 +1991,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,4,8);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1572,6 +2019,15 @@ $(document).ready( function(){
       tokenStr = $('#main').find('img.toMove')
       moveToken(TokenToMove,4,9);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1591,6 +2047,15 @@ $(document).ready( function(){
       tokenStr = $('body').find('img.toMove')
       moveToken(TokenToMove,5,0);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1611,6 +2076,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,1);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1631,6 +2105,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,2);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1650,6 +2133,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,3);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1669,6 +2161,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,4);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1688,6 +2189,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,5);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1707,6 +2217,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,6);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1727,6 +2246,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,7);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1746,6 +2274,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,8);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1765,6 +2302,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,5,9);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1784,6 +2330,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,0);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1803,6 +2358,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,1);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1822,6 +2386,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,2);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1841,6 +2414,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,3);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1860,6 +2442,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,4);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1879,6 +2470,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,5);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1898,6 +2498,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,6);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1917,6 +2526,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,7);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1936,6 +2554,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,8);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1955,6 +2582,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,6,9);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1974,6 +2610,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,0);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -1993,6 +2638,15 @@ $(document).ready( function(){
       tokenStr = $('#main').find('img.toMove')
       moveToken(TokenToMove,7,1);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2012,6 +2666,15 @@ $(document).ready( function(){
       tokenStr = $('body').find('img.toMove')
       moveToken(TokenToMove,7,2);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2031,6 +2694,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,3);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2051,6 +2723,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,4);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2070,6 +2751,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,5);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2089,6 +2779,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,6);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2108,6 +2807,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,7);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2127,6 +2835,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,8);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2147,6 +2864,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,7,9);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2166,6 +2892,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,8,0);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2185,6 +2920,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,8,1);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2204,6 +2948,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,8,2);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2223,6 +2976,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,8,3);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2241,6 +3003,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       moveToken(TokenToMove,8,4);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2259,6 +3030,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       moveToken(TokenToMove,8,5);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2277,6 +3057,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       moveToken(TokenToMove,8,6);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2296,6 +3085,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       moveToken(TokenToMove,8,7);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2316,6 +3114,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       moveToken(TokenToMove,8,8);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2337,6 +3144,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,8,9);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2358,6 +3174,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,9,0);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2379,6 +3204,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,9,1);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2401,6 +3235,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove');
       moveToken(TokenToMove,9,2);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2422,6 +3265,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,9,3);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2443,6 +3295,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,9,4);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2464,6 +3325,15 @@ $(document).ready( function(){
       tokenStr = $('main').find('img.toMove')
       moveToken(TokenToMove,9,5);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2484,6 +3354,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       moveToken(TokenToMove,9,6);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2504,6 +3383,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       moveToken(TokenToMove,9,7);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2524,6 +3412,15 @@ $(document).ready( function(){
       // this is the proposed destination square
       moveToken(TokenToMove,9,8);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2534,17 +3431,30 @@ $(document).ready( function(){
 
   $('#main-r9c9').on('click', function () {   // cell-specific
     // toggle a lit up square
+    console.log('clicked');
     if ($(this).children('img').hasClass('toMove')) {
+      console.log('1');
       $(this).children('img').removeClass('toMove');
     //  if nothing else lit, light this one up
     } else if ($('body').has('img.toMove').length==0) {
+      console.log('2');
       $(this).children('img').addClass('toMove');
       TokenToMove = Board[9][9];             // cell-specific
     // cell already lit
     } else {
       // this is the proposed destination square
+      console.log('3');
       moveToken(TokenToMove,9,9);            // cell-specific
       RenderBoard();
+      if ((result != 'it was not your turn') && (Turn!='s')) {
+        if (Turn=='a') {
+          $('#chat').append('1');
+          RefTurn.update({"turn":"f"})
+        } else if (Turn=='f') {
+          $('#chat').append('2');
+          RefTurn.update({"turn":"a"})
+        }
+      }
       if (MyFleet=='a') {
         renderTrayA();
       } else {
@@ -2568,17 +3478,26 @@ $(document).ready( function(){
       RenderBoard();
     });
     $('#fed').on('click', function() {
-      Fleet='f';
+      MyFleet='f';
+      renderTrayF();
+      Turn='s';
       console.log('F');
     });
     // quickly set Alliance side
     $('#alliance').on('click', function() {
-      Fleet='a';
+      MyFleet='a';
+      renderTrayA();
+      Turn='s';
       console.log('A');
     });
     // quickly set the whole Board
     $('#quickAll').on('click', function() {
+      MyFleet = 'a';
+      RefTurn.update({"turn":"a"})
+      Turn = 'a';
       SetBoard();
+      clearTrayA();
+      clearTrayF();
       console.log('all');
     });
     // send all my tokens back to the tray
@@ -2599,5 +3518,7 @@ $(document).ready( function(){
       }
       RenderBoard();
     });
+
+
 
 });

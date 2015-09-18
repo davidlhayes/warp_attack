@@ -239,6 +239,7 @@ refTurn.on('value', function(snapshot) {
       Board[key[1]][key[3]] = newObj[key];
     }
   }
+  renderBoard();
 }, function(errorObject) {
   console.log("The read failed: " + errorObject.code);
 

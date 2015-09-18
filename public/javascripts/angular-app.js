@@ -2,29 +2,31 @@
 var warpApp = angular.module('warpApp', ["firebase"]);
 var FURL = "https://shining-heat-2898.firebaseio.com";
 var ref = new Firebase("https://shining-heat-2898.firebaseio.com");
-var msgRef = new Firebase("https://shining-heat-2898.firebaseio.com/messages");
+var RefMsg = new Firebase("https://shining-heat-2898.firebaseio.com/messages");
+var RefFleet = new Firebase(FURL + '/alliance');
 
 // the code below is said to be needed for handlebars to work
 warpApp.config(['$interpolateProvider', function($interpolateProvider) {
   $interpolateProvider.startSymbol('{[{');
   $interpolateProvider.endSymbol('}]}');
 }]);
-
-warpApp.controller('WarpCtrl', function($scope) {
+// Message panel next to game board
+// warpApp.controller('WarpCtrl', function($scope) {
+// //
 //
+//   $scope.messages =
+//     [
+//       ''
+//     ]
+//     // $scope.plusLike = function(index) {
+//     //   $scope.messages[index].likes += 1;
+//     // };
+//     // $scope.minusLike = function(index) {
+//     //   $scope.messages[index].likes -= 1;
+//     // };
+//     console.log($scope.messages)
+//   });
 
-  $scope.messages =
-    [
-      'test', 'ow', 'plz', 'work'
-    ]
-    // $scope.plusLike = function(index) {
-    //   $scope.messages[index].likes += 1;
-    // };
-    // $scope.minusLike = function(index) {
-    //   $scope.messages[index].likes -= 1;
-    // };
-    console.log($scope.messages)
-  });
 
 
 warpApp.controller('UserCtrl', function($scope) {
@@ -51,12 +53,36 @@ warpApp.controller('UserCtrl', function($scope) {
         if (error) {
           console.log("Login Failed!", error);
         } else {
+          RefPlayers = new Firebase(FURL + '/player');
+          RefPlayers.once('value', function(snapshot) {
+            console.log('yeah!');
+            if (snapshot.child('alliance').exists) {
+              Fleet = 'federation';
+              console.log('we will be federation')
+            } else {
+              console.log('adding');
+              RefPlayers.update({'player':'alliance'});
+              Fleet = 'alliance';
+            }
+          });
+          // this didn't work
+            // if (RefFleet==null) {
+            //   console.log('setting data')
+            //
+            //   RefFleet.push(authData.uid);
+            //   Fleet = 'a';
+            // } else {
+            //   Fleet = 'f';
+            //   console.log('hi')
+            // }
+            // RefAuth.set(authDat.uid);  // a datapath
+          //   console.log(RefFleet.alliance);
           // console.log("Authenticated most successfully with payload:", authData);
           // console.log("How's my hair?");
           // hook this user up with a partner or let them choose a side
           var gameBoard = new Firebase(FURL + "/gameBoard");
           var playerId = authData.uid;
-          messageBox(playerId,'clear');
+          // messageBox(playerId,'clear');
           // gameBoard.remove();
           gameBoard.once('value', function(dataSnapshot) {
             if (dataSnapshot.exists()) {
@@ -204,6 +230,7 @@ warpApp.controller('UserCtrl', function($scope) {
         }
       })}
     $scope.logOutUser = function() {
+      RefFleet.remove();
       ref.unauth();
       console.log('You are logged out');
     }
@@ -252,7 +279,9 @@ function BuildFirebaseArray() {
 // On that signal, the local board is wiped and synced to Firebase
 RefTurn.on('value', function(snapshot) {
   newObj = snapshot.val();
-  Turn = newObj['turn'];
+  console.log('Turn is now set')
+  if (Turn != 's') Turn = newObj['turn'];
+  console.log(Turn);
   for (var key in newObj) {
     if (key[0]=='r' && key[2]=='c') {      // parse data 'name' of format: r0c1
       Board[key[1]][key[3]] = newObj[key];
@@ -360,20 +389,51 @@ function tokens(playerId) {
 //   console.log(refToSameLocation);
 // }
 
-function messageBox(sender,message) {
-  // figure out fleet and set color
-  if (message == 'clear') {
-    msgRef.remove();
-  } else {
-    if (MyFleet=='a') {
-      html = "<p class='alliance'>" + message + "</p>";
-    } else if (MyFleet='f') {
-      html = "<p class='alliance'>" + message + "</p>";
-    } else if (MyFleet='s') {
-      html = "<p class='system'>" + message + "</p>";
-    } else if (MyFleet='o') {
-      html = "<p class='utility'>" + message + "</p>";
-    }
-    msgRef.push(html);
-  }
+// function messageBox(sender,message) {
+//   // figure out fleet and set color
+//   if (message == 'clear') {
+//     RefMsg.remove();
+//   } else {
+//     if (MyFleet=='a') {
+//       html = "<p class='alliance'>" + message + "</p>";
+//     } else if (MyFleet='f') {
+//       html = "<p class='alliance'>" + message + "</p>";
+//     } else if (MyFleet='s') {
+//       html = "<p class='system'>" + message + "</p>";
+//     } else if (MyFleet='o') {
+//       html = "<p class='utility'>" + message + "</p>";
+//     }
+//     RefMsg.push(html);
+//   }
+// }
+
+function setTrayA() {
+  // the initial home and final resting place for Alliance tokens
+  var TrayA = [
+        [ 0 ,  1,  2,  3 ],
+        [ 4 ,  5,  6,  7 ],
+        [ 8 ,  9, 10, 11 ],
+        [12 , 13, 14, 15 ],
+        [16 , 17, 18, 19 ],
+        [20 , 21, 22, 23 ],
+        [24 , 25, 26 ,27 ],
+        [28 , 29, 30, 31 ],
+        [32 , 33, 34 ,35 ],
+        [36 , 37, 38 ,39 ]]
+  // the initial home and final resting place for Federation tokens
+
+}
+
+function setTrayF() {
+  var TrayF = [
+        [ 40, 41, 42, 43 ],
+        [ 44, 45, 46, 47 ],
+        [ 48, 49, 50, 51 ],
+        [ 52, 53, 54, 55 ],
+        [ 56, 57, 58, 59 ],
+        [ 60, 61, 62, 63 ],
+        [ 64, 65, 66, 67 ],
+        [ 68, 69, 70, 71 ],
+        [ 72, 73, 74, 75 ],
+        [ 76, 77, 78, 79 ]]
 }

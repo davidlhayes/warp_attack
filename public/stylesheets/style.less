@@ -6,6 +6,9 @@
 @boardGridColor: rgb(0,255,245);
 @messageFont: 'Courier', sans-serif;
 @messageFontSize: 10px;
+@buttonColor: rgba(240,207,61,.8);
+@buttonFontColor: rgba(20,20,20,1);
+@buttonFont: 'Arial Black', sans-serif;
 
 body {
   padding: 50px;
@@ -83,8 +86,27 @@ table#main  {
 .toLandOn {
 
 }
+#controls{
+  margin-left: 55px;
 
-
+}
+#buttons {
+  width: 690px;
+}
+// .button1 {
+//   width: 125px;
+//   height: 60px;
+//   text-align: center;
+//   margin-right: 15px;
+//   padding: 15px 5px 15px 5px;
+//   background-color: @buttonColor;
+//   color: @buttonFontColor;
+//   font-family: @buttonFont;
+//
+// }
+.clearfix {
+  height: 50px;
+}
 table#tray  {
   margin: 0 auto;
 
@@ -111,13 +133,13 @@ table#tray  {
 }
 
 #chat {
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
   width: 181px;
   height: 600px;
-  li {
-    font-size: .7rem;
-    line-height: .8rem;
-  }
+  font-size: .6rem;
+  line-height: .6rem;
+
 
   color: green;
   font-family: @messageFont;

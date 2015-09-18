@@ -1,7 +1,9 @@
+var result = '';
 // These functions were set up initially to allow control
 // of the tokens in the game from the console.
 // This is the directory of token attributes
 //         fleet rank  revealed?       image location
+// var if ((MyFleet=='a') && (Turn!='s')) {ssages = [];
 var Token = [
           [ 'a' , '1' , false , '/assets/images/starship-a-1.png'],
           [ 'a' , '2' , false , '/assets/images/starship-a-2.png'],
@@ -142,7 +144,7 @@ var wData = {};
 
 function setToken(token,dstR,dstC) {
     var tokenOrigin = findToken(token); // find token anywhere in trays or on Board
-    // console.log('token ' + token + ' tokenOrigin: ' + tokenOrigin + ' dstR: ' + dstR + ' dstC: ' + dstC);
+    // $('#chat').append('token ' + token + ' tokenOrigin: ' + tokenOrigin + ' dstR: ' + dstR + ' dstC: ' + dstC);
     if (tokenOrigin.length==3) {        // valid return array [ 'array', row, col ]
       var originR = tokenOrigin[1];
       var originC = tokenOrigin[2];
@@ -154,7 +156,7 @@ function setToken(token,dstR,dstC) {
             // showAll();
             return true;
           } else {
-              console.log('That is outside your authorized sector');
+              $('#chat').append('That is outside your authorized sector');
               return false;
           }
         } else if (tokenOrigin[0] == 'TrayF') {
@@ -164,22 +166,22 @@ function setToken(token,dstR,dstC) {
             // showAll();
             return true;
           } else {
-            console.log('That is outside your authorized sector');
+            $('#chat').append('That is outside your authorized sector');
             return false;
           }
         } else {
           // showAll();
-          console.log('token is not found in either tray')
+          $('#chat').append('token is not found in either tray')
           return false;
         }
       } else {
         // showAll();
-        console.log('Space + ' + dstR + ':' + dstC + ' is occupied');
+        $('#chat').append('Space + ' + dstR + ':' + dstC + ' is occupied');
         return false;
       }
     } else {
       // showAll();
-      console.log('Space is occupied!');
+      $('#chat').append('Space is occupied!');
       return false;
     }
 };
@@ -192,7 +194,7 @@ function tokenUnset(token) {
         TrayA[openCell[0]][openCell[1]] = Board[orgCell[1]][orgCell[2]];
         Board[orgCell[1]][orgCell[2]] = 80;
       } else {
-        console.log('Error! Tray appears to be full!');
+        $('#chat').append('Error! Tray appears to be full!');
       }
     } else {
       var openCell =  getIndexOfK(TrayF,80);
@@ -200,7 +202,7 @@ function tokenUnset(token) {
         TrayF[openCell[0]][openCell[1]] = Board[orgCell[1]][orgCell[2]];
         Board[orgCell[1]][orgCell[2]] = 80;
       } else {
-        console.log('Error! Tray appears to be full!');
+        $('#chat').append('Error! Tray appears to be full!');
       }
     }
 };
@@ -209,16 +211,11 @@ function tokenUnset(token) {
 
 function moveToken(token,dstR,dstC) {
   var origin = findToken(token);  // 3-element array: arrayname, row, col
-  if (Token[token][0] == Turn) {  // is it your turn?
-    console.log(origin);
-    console.log('this turn: ' + Turn);
+  if ((Token[token][0] == Turn) || (Turn=='s')) {  // is it your turn?
+    // $('#chat').append(origin);
+    // $('#chat').append('this turn: ' + Turn);
     var target = checkMove(token,dstR,dstC);
-    var result = '';
-    if (Turn=='a') {
-      RefTurn.update({"turn":"f"})
-    } else if (Turn=='f') {
-      RefTurn.update({"turn":"a"})
-    }
+    // var result = '';  MAKING THIS GLOBAL FOR USE IN RENDER.JS
     // move if space is available
     if (target=='empty') {
       Board[dstR][dstC] = token;
@@ -235,8 +232,9 @@ function moveToken(token,dstR,dstC) {
         default:
           alert('moveToken is broken');
       }
-      console.log('Next turn: ' + Turn)
-      result = 'moved';
+      // $('#chat').append('<p>Next turn: ' + Turn+ '</p>')
+      // result = 'moved';
+      processResult(result);
     } else if (target=='enemy') { // battle if space is occupied by an enemy
       // check for suicide case (S beats 1)
       if (Token[token][1]=='S' && Token[Board[dstR][dstC]]=='1') {
@@ -246,14 +244,16 @@ function moveToken(token,dstR,dstC) {
         tokenUnset(Board[dstR][dstC]);
         tokenUnset(token);
         reuslt = 'suicide';
-        console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+        // $('#chat').append(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+        processResult(result);
       } else if (Token[token][1]=='1' && Token[Board[dstR][dstC]]=='S')  {
           // mover is the loser
           tokenUnset(token);
           // reveal the victor for the rest of the game
           tokenUnset(Board[dstR][dstC]);
           reuslt = 'suicide';
-        console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+        // $('#chat').append(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+        processResult(result);
           // special case where attacked square is a mine, but token is not rank 8 (minesweeper)
       } else if (Token[Board[dstR][dstC]]=='M') {
           if (Token[token][1]=='8') {
@@ -263,19 +263,19 @@ function moveToken(token,dstR,dstC) {
             tokenUnset(token);
             tokenUnset(Board[dstR][dstC]);
           }
-          console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+          // $('#chat').append(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
           processResult(result);
           // check for a win/was the flag attacked/captured?
       } else if (Token[Board[dstR][dstC]][1]=='F') {
           result = 'win';
           // check for equal rank--both lose
-          console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+          // $('#chat').append(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
           processResult(result);
       } else if (Token[token][1] == Token[Board[dstR][dstC]][1]) {
           result = 'double loss';
           tokenUnset(token);
           tokenUnset(Board[dstR][dstC]);
-          console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]],' ' + result);
+          // $('#chat').append(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]],' ' + result);
           processResult(result);
         // check for attacker win
       } else if (Token[token][0],Token[token][1] < Token[Board[dstR][dstC]][1]) {
@@ -283,14 +283,14 @@ function moveToken(token,dstR,dstC) {
           tokenUnset(Board[dstR][dstC]);
           Board[dstR][dstC] = token;
           Board[origin[1]][origin[2]] = 80;
-          console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+          // $('#chat').append(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
         processResult(result);
         // check for attacker lose
       } else if (Token[token][1] > Token[Board[dstR][dstC]][1]) {
           result = 'mover loses';
           tokenUnset(token);
           Board[origin[1]][origin[2]] = 80;
-        console.log(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
+        // $('#chat').append(Turn,Token[token][0],Token[token][1],Token[Board[dstR][dstC]][0],Token[Board[dstR][dstC]][1],' ' + result);
         processResult(result);
       }
     } else {
@@ -307,13 +307,24 @@ function moveToken(token,dstR,dstC) {
 
 function processResult(result) {
   // messages should go to message panel
-  console.log('Result: ' + result);
+  if (Turn=='f') {
+    $('#chat').append('It\'s blue\'s turn');
+  } else {
+    $('#chat').append('It\'s red\'s turn');
+  }
+  if (Turn=='s' && boardFull()) {
+    Turn='a';
+    result = 'Game set. Red begins';
+  }
+$('#chat').append('<p>' + result + '</p>');
+  // MessageBox(result);
+  $('#chat').append('<p>Turn ' + Turn + '</p>');
 }
 
 function checkMove(token,dstR,dstC) {
   var origin = findToken(token);
   // token type check
-  if ((Token[token][1]=='M' || (Token[token][1]=='F')) ) return 'can\'t move that token ';
+  if ((Token[token][1]=='M' || (Token[token][1]=='F')) && Turn != 's') return 'can\'t move that token ';
   // same square check
   if ((dstR==origin[0]) && (dstC==origin[1])) return 'destination matches origin'
   // board boundaries
@@ -327,26 +338,29 @@ function checkMove(token,dstR,dstC) {
   // too many spaces
   rowMove = dstR-origin[0];
   colMove = dstC-origin[1];
-  // check special case for rank 9, which is allowed to move multiple empty spaces in one direction
-  if (((Math.abs(rowMove)>1 && colMove==0) || (rowMove==0 && Math.abs(colMove<1))) && (Token[token][1]==9)) {
-    if (rowMove>1) {
-      for (var j=origin[1]+1; j<dstC; j++) {
-        if (Board[origin[0],j] != 80) return '+row move is blocked by' + Board[origin[0],j]
+
+  if (Turn != 's') {
+    // check special case for rank 9, which is allowed to move multiple empty spaces in one direction
+    if (((Math.abs(rowMove)>1 && colMove==0) || (rowMove==0 && Math.abs(colMove<1))) && (Token[token][1]==9)) {
+      if (rowMove>1) {
+        for (var j=origin[1]+1; j<dstC; j++) {
+          if (Board[origin[0],j] != 80) return '+row move is blocked by' + Board[origin[0],j]
+        }
+      } else if (rowMove<80) {  // other direction
+        for (var j=origin[1]+1; j<dstC; j++) {
+          if (Board[origin[0],j] != 80) return '-row move is blocked by' + Board[origin[0],j]
+        }
+      } else if (colMove>1) {
+        for (var j=origin[1]+1; j<dstC; j++) {
+          if (Board[origin[0],j] != 80) return '+col move is blocked by' + Board[origin[0],j]
+        }
+      } else if (colMove<80) {
+        for (var j=origin[1]+1; j<dstC; j++) {
+          if (Board[origin[0],j] != 80) return '-col move is blocked by' + Board[origin[0],j]
       }
-    } else if (rowMove<80) {  // other direction
-      for (var j=origin[1]+1; j<dstC; j++) {
-        if (Board[origin[0],j] != 80) return '-row move is blocked by' + Board[origin[0],j]
+    } else if ((Math.abs(rowMove) + Math.abs(colMove) > 1) || ((Token[token][1]==9) && (Math.abs(rowMove)>0) && (Math.abs(colMove)>0))) {
+        return 'too many spaces';
       }
-    } else if (colMove>1) {
-      for (var j=origin[1]+1; j<dstC; j++) {
-        if (Board[origin[0],j] != 80) return '+col move is blocked by' + Board[origin[0],j]
-      }
-    } else if (colMove<80) {
-      for (var j=origin[1]+1; j<dstC; j++) {
-        if (Board[origin[0],j] != 80) return '-col move is blocked by' + Board[origin[0],j]
-    }
-  } else if ((Math.abs(rowMove) + Math.abs(colMove) > 1) || ((Token[token][1]==9) && (Math.abs(rowMove)>0) && (Math.abs(colMove)>0))) {
-      return 'too many spaces';
     }
   }
   // space empty or occupied
@@ -371,14 +385,14 @@ function showBoard() {
                 + Board[i][8] + '-' + Token[Board[i][8]][0] + '-' + Token[Board[i][8]][1] + '  '
                 + Board[i][9] + '-' + Token[Board[i][9]][0] + '-' + Token[Board[i][9]][1];
 
-    console.log(outString);
+    $('#chat').append(outString);
   }
   return true;
 };
 // Display Alliance tray
 function showTrayA() {
     for (var i=0; i<4; i++) {
-      console.log(i + ':' + TrayA[i][0] + ' ' + TrayA[i][1] + ' '
+      $('#chat').append(i + ':' + TrayA[i][0] + ' ' + TrayA[i][1] + ' '
                 + TrayA[i][2] + ' ' + TrayA[i][3] + ' '
                 + TrayA[i][4] + ' ' + TrayA[i][5] + ' '
                 + TrayA[i][6] + ' ' + TrayA[i][7] + ' '
@@ -389,7 +403,7 @@ function showTrayA() {
 // Display Federation tray
 function showTrayF() {
     for (var i=0; i<4; i++) {
-      console.log(i + ':' + TrayF[i][0] + ' ' + TrayF[i][1] + ' '
+      $('#chat').append(i + ':' + TrayF[i][0] + ' ' + TrayF[i][1] + ' '
                 + TrayF[i][2] + ' ' + TrayF[i][3] + ' '
                 + TrayF[i][4] + ' ' + TrayF[i][5] + ' '
                 + TrayF[i][6] + ' ' + TrayF[i][7] + ' '
@@ -561,7 +575,7 @@ function SetFederation() {
 function SaveFederation() {   // a quick demo function
   for (var i=6;i<10;i++) {
     for (var j=0;j<10;j++) {
-      console.log('setToken(' + Board[i][j] + ',' + i + ',' + j + ');');
+      $('#chat').append('setToken(' + Board[i][j] + ',' + i + ',' + j + ');');
     }
   }
 }
@@ -569,7 +583,7 @@ function SaveFederation() {   // a quick demo function
 function SaveAlliance() {   // a quick demo function
   for (var i=0;i<4;i++) {
     for (var j=0;j<10;j++) {
-      console.log('setToken(' + Board[i][j] + ',' + i + ',' + j + ');');
+      $('#chat').append('setToken(' + Board[i][j] + ',' + i + ',' + j + ');');
     }
   }
 }
@@ -580,14 +594,14 @@ function setRemaining() {
   var empty = [];
   for (var i=0; i<4; i++) {
     for (var j=0; j<10; j++) {
-      // console.log('TrayA ' + i,j,TrayA[i][j]);
+      // $('#chat').append('TrayA ' + i,j,TrayA[i][j]);
       if (TrayA[i][j] != 80) {
         empty = getIndexConstrained(Board,0,3,80)
-        // console.log(empty);
+        // $('#chat').append(empty);
         if (empty.length < 3) {
-          // console.log('HEY');
+          // $('#chat').append('HEY');
         }
-        // console.log('A setToken: ' + TrayA[i][j],empty[0],empty[1])
+        // $('#chat').append('A setToken: ' + TrayA[i][j],empty[0],empty[1])
         setToken(TrayA[i][j],empty[0],empty[1]);
       }
     }
@@ -596,11 +610,11 @@ function setRemaining() {
   var empty = [];
   for (var i=0; i<10; i++) {
     for (var j=0; j<4; j++) {
-      // console.log('TrayF ' + i,j,TrayF[i],[j]);
+      // $('#chat').append('TrayF ' + i,j,TrayF[i],[j]);
       if (TrayF[i][j] != 80) {
         empty = getIndexConstrained(Board,6,9,80)
-        // console.log(empty);
-        // console.log('F setToken: ' + TrayF[i][j],empty[0],empty[1])
+        // $('#chat').append(empty);
+        // $('#chat').append('F setToken: ' + TrayF[i][j],empty[0],empty[1])
         setToken(TrayF[i][j],empty[0],empty[1]);
       }
     }
@@ -608,4 +622,31 @@ function setRemaining() {
 
   BuildFirebaseArray();
 
+}
+function boardFull() {
+  var ct = 0;
+  var elem = 0;
+  for (i=0;i<10;i++) {
+    for (j=0;j<10;j++) {
+      elem = Board[i][j];
+      if (elem < 80) ct++;
+    }
+  }
+  return ct==80; // all empty
+}
+function clearTrayA() {
+  for (var i=0;i<10;i++) {
+    for (var j=0;j<4;j++) {
+      TrayA[i][j] = 80;
+    }
+  }
+  renderTrayA();
+}
+function clearTrayF() {
+  for (var i=0;i<10;i++) {
+    for (var j=0;j<4;j++) {
+      TrayA[i][j] = 80;
+    }
+  }
+  renderTrayF();
 }
