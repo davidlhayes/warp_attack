@@ -4,6 +4,8 @@
 
 Warp Attack is a board game to be played by two human players. Input is movement of pieces with a mouse or a finger (on applicable devices).
 
+![Warp Attack](https://raw.githubusercontent.com/davidlhayes/warp_attack/master/public/assets/images/warp-final-screen.png)
+
 ## Scope
 
 A complete game must be playable with players using separate computers.
